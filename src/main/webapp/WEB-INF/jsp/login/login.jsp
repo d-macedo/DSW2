@@ -20,7 +20,7 @@
   		</div>
 	</div>
 	<div class="form">
-  		<div class="thumbnail"><img src="<c:url value="/resource/img/turtle-logo-transp-teste"/>"/> </div>
+  		<div class="thumbnail"><img src="<c:url value="/resource/img/turtle-logo-transp-teste.png"/>"/> </div>
   		<form class="login-form">
     		<input name ="userLogin" type="text" placeholder="usuário"/>
     		<input name ="userPassword" type="password" placeholder="senha"/>
