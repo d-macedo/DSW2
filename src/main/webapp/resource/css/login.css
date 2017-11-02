@@ -1,0 +1,113 @@
+/* Form */
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 300px;
+  margin: 0 auto 100px;
+  padding: 30px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center;
+}
+.form .thumbnail {
+  background: #061d31;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 30px;
+  padding: 50px 30px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+
+}
+.form .thumbnail img {
+  width: 75%;
+  height: auto;
+
+}
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  outline: 0;
+  background: #ef4f27;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #EF3B3A;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info img {
+  margin-left: auto;
+  margin-right:auto;
+ 
+}
+
+
+/* END Form */
+/* Demo Purposes */
+body {
+  background: #061d31;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0
+}
+body:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
