@@ -1,0 +1,45 @@
+body{
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0
+}
+
+.navbar{	
+	height: 80px;
+	
+	border-radius: 0px;
+	border-top: 0px;
+	border-left: 10px;
+	border-right: 0px;
+	border-bottom: solid #DE3C14;
+}
+.navbar-nav > li > a {
+   line-height: 50px;
+}
+
+.navbar-inverse{
+	background: #061d31;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+	color: white;
+}
+
+.pesquisarIndex input{
+	width: 100%;
+	height: 40px;
+	padding: 3px;
+}
+
+.pesquisarIndex div{
+	padding: 0 0 0 0;
+}
+
+.pesquisarIndex button{
+	height: 40px;
+	width: 100%;
+	background-color: #DE3C14;
+	color: white;
+	border: 0;
+}
