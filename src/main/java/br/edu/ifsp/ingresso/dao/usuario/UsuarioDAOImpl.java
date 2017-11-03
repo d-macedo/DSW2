@@ -81,6 +81,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		return user;
 	}
 	
+	
 	@Override
 	public void delete (Usuario user) {
 		getCurrentSession().delete(user);
@@ -99,5 +100,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		for (Usuario user : users) {
 			delete(user);
 		}
+	}
+
+	@Override
+	public Usuario findByEmail(String email) {
+		Usuario user = (Usuario) getCurrentSession().get(Usuario.class, email);
+		return user;
 	}
 }

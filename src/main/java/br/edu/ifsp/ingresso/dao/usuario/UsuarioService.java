@@ -32,6 +32,13 @@ public class UsuarioService {
 		return user;
 	}
 	
+	public Usuario findByEmail(String email) {
+		usuarioDAO.openCurrentSession();
+		Usuario user = usuarioDAO.findByEmail(email);
+		usuarioDAO.closeCurrentSession();
+		return user;
+	}
+	
 	public void delete(long id) {
 		usuarioDAO.openCurrentSessionWithTransaction();
 		Usuario user = usuarioDAO.findById(id);
