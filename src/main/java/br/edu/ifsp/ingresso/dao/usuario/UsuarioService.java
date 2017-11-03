@@ -1,8 +1,7 @@
-package br.edu.ifsp.ingresso.dao.services;
+package br.edu.ifsp.ingresso.dao.usuario;
 
 import java.util.List;
 
-import br.edu.ifsp.ingresso.dao.implementations.UsuarioDAOImpl;
 import br.edu.ifsp.ingresso.models.Usuario;
 
 public class UsuarioService {

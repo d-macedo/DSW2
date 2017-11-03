@@ -1,4 +1,4 @@
-package br.edu.ifsp.ingresso.dao.interfaces;
+package br.edu.ifsp.ingresso.dao.usuario;
 
 import java.util.List;
 

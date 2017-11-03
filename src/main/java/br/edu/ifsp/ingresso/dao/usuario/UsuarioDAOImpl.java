@@ -1,4 +1,4 @@
-package br.edu.ifsp.ingresso.dao.implementations;
+package br.edu.ifsp.ingresso.dao.usuario;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import br.edu.ifsp.ingresso.dao.interfaces.UsuarioDAO;
+
 import br.edu.ifsp.ingresso.models.Usuario;
 
 
