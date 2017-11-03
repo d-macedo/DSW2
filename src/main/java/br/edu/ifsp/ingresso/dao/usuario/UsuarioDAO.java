@@ -12,6 +12,5 @@ public interface UsuarioDAO {
     public Usuario findByEmail(String email);
     public void delete(Usuario entity);	     
     public List<Usuario> findAll();
-	public void deleteAll();
 
 }
