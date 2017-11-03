@@ -1,4 +1,4 @@
-package br.edu.ifsp.ingresso.models;
+package br.edu.ifsp.ingresso.conn;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
