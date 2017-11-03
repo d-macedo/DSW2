@@ -3,32 +3,56 @@ package br.edu.ifsp.ingresso.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "USUARIO")
 public class Usuario {
 	@Id
+	@Column(name = "USU_COD")
 	private long usu_cod;
 	
-	@Column
+	@Column(name = "USU_NOME")
 	@NotNull
 	private String usu_nome;
 	
-	@Column
+	@Column(name = "USU_EMAIL")
 	@NotNull
 	private String usu_email;
 	
-	@Column
+	@Column(name = "USU_SENHA")
 	@NotNull
 	private String usu_senha;
 	
-	@Column
+	@Column(name = "USU_TIPO")
 	@NotNull
 	private char usu_tipo;
 	
-	@Column
+	@Column(name = "USU_IMG_PATH")
 	private String usu_img_path;
-
+	
+	
+	
+	public Usuario (){
+	}
+	
+	public Usuario(String usu_nome, String usu_email, String usu_senha, char usu_tipo){
+		this.usu_nome = usu_nome;
+		this.usu_email = usu_email;
+		this.usu_senha = usu_senha;
+		this.usu_tipo = usu_tipo;
+	}
+	
+	public Usuario(String usu_nome, String usu_email, String usu_senha, char usu_tipo, String usu_img_path){
+		this.usu_nome = usu_nome;
+		this.usu_email = usu_email;
+		this.usu_senha = usu_senha;
+		this.usu_tipo = usu_tipo;
+		this.usu_img_path = usu_img_path;
+	}
+	
+	
 	public long getUsu_cod() {
 		return usu_cod;
 	}
@@ -76,6 +100,15 @@ public class Usuario {
 	public void setUsu_img_path(String usu_img_path) {
 		this.usu_img_path = usu_img_path;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [usu_cod=" + usu_cod + ", usu_nome=" + usu_nome + ", usu_email=" + usu_email + ", usu_senha="
+				+ usu_senha + ", usu_tipo=" + usu_tipo + ", usu_img_path=" + usu_img_path + "]";
+	}
+	
+	
+	
 	
 	
 }
