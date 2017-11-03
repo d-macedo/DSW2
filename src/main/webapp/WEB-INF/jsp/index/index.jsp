@@ -4,14 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Turtle Tickets</title>
 
-<link rel="stylesheet" type="text/css"href="<c:url value='/resource/css/bootstrap.min.css'/>">
-<link rel="stylesheet" type="text/css"href="<c:url value='/resource/css/bootstrap-theme.min.css'/>">
-<link rel="stylesheet" type="text/css"href="<c:url value='/resource/css/turtletickets.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resource/css/bootstrap.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resource/css/bootstrap-theme.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resource/css/turtletickets.css'/>">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
@@ -28,8 +31,8 @@
 				<li><a href="<c:url value='/' />">Turtle Tickets</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<c:url value='/login/cadastrar' />"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
-				<li><a href="<c:url value='/login/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="<c:url value='/cadastrar' />"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+				<li><a href="<c:url value='/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -59,9 +62,10 @@
 			</div>
 			
 			<div class="col-md-5 descricao">
-				Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. 
-				<br>
-				<a href="" class="link">Visualizar evento...</a>			
+				<p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
+				<div>
+					<a href="" class="link">Visualizar evento...</a>
+				</div>			
 			</div>
 			
 			<div class="col-md-7 imagem">

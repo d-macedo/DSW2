@@ -1,9 +1,9 @@
 body{
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  background: #fafbfc;
+	font: none; 
+	font-family: "Roboto", sans-serif;
+	
+	margin: 0;
+	background: #fafbfc;
 }
 
 .navbar{	
