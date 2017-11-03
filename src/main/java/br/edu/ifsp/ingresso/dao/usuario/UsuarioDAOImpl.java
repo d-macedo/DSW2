@@ -14,7 +14,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	private EntityManager manager; 
 	
-	public UsuarioDAOImpl(EntityManager manager) {
+	public UsuarioDAOImpl() {
 		super();
 		this.manager = FactoryEntityManager.getEntityManager();
 	}
@@ -42,7 +42,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	@Override
 	public Usuario findById(long id) {
-		Query query = manager.createQuery("SELECT u FROM USUARIO u WHERE USU_COD =" + id);
+		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE USU_COD = :id").setParameter("id", id);
 		Usuario user = (Usuario) query.getSingleResult();
 		return user;
 	}
@@ -50,16 +50,27 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> findAll(){
-		Query query = manager.createQuery("SELECT * FROM USUARIO");
+		Query query = manager.createQuery("SELECT * FROM Usuario");
 		List<Usuario> users = query.getResultList();
-		return users;
+		
+		if(users.isEmpty()) {
+			return null;
+		}else {
+			return users;
+		}	
 	}
 	
 	@Override
 	public Usuario findByEmail(String email) {
-		Query query = manager.createQuery("SELECT u FROM USUARIO u WHERE USU_EMAIL =" + email);
+		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE USU_EMAIL = :email").setParameter("email", email);
 		Usuario user = (Usuario) query.getSingleResult(); 
-		return user;
+		
+		if(user != null) {
+			return user;
+		}else {
+			return null;
+		}
+		
 	}
 
 }

@@ -15,16 +15,16 @@
 <body>
 	<div class="container">
 		<div class="info">
-    		<img src="<c:url value="/resource/img/titulo.png"/>">
+    			<img src="<c:url value="/resource/img/titulo.png"/>">
   		</div>
 	</div>
 	<div class="form">
-  		<div class="thumbnail"><img src="<c:url value="/resource/img/turtle-logo-transp-teste.png"/>"/> </div>
-  		<form class="login-form">
-    		<input name ="userLogin" type="text" placeholder="usuário"/>
-    		<input name ="userPassword" type="password" placeholder="senha"/>
-    		<button type="submit" name="buttonLogin">login</button>
-    		<p class="message">Não Registrado? <a href="#">Cadastre-se aqui</a></p>
+  		<div class="thumbnail"><img src="<c:url value="/resource/img/turtle-logo-transp-teste.png"/>"/></div>
+  		<form  action ="<c:url value="/login/autenticar" />"  method="post" class="login-form">
+	    		<input name ="usuario.usu_email" type="text" placeholder="usuário"/>
+	    		<input name ="usuario.usu_senha" type="password" placeholder="senha"/>
+	    		<button type="submit" name="buttonLogin">login</button>
+	    		<p class="message">Não Registrado? <a href="#">Cadastre-se aqui</a></p>
   		</form>
 	</div>
 </body>
