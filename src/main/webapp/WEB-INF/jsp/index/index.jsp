@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,16 +23,21 @@
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="<c:url value='/resource/img/turtle-logo-transp-teste.png' />" height="56px"></a>
+			<ul class="nav navbar-nav">
+				<li><a href="<c:url value='/' />">Turtle Tickets</a></li>
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
-				<li><a href="<c:url value='/ingresso/login/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="<c:url value='/login/cadastrar' />"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+				<li><a href="<c:url value='/login/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
 	</nav>
 	
 	<div class="container">
-		<form method="get" action="">
-			<div class="row pesquisarIndex">
+		
+		<div class="row pesquisarIndex">
+			<form method="get" action="">
 				<div class="col-md-3">
 					<input type="text" placeholder="Pesquisar eventos" name="nomeEvento">
 				</div>
@@ -45,8 +50,46 @@
 				<div class="col-md-3">
 					<button>Pesquisar</button>
 				</div>
+			</form>
+		</div>
+		
+		<div class="row eventoIndex">
+			<div class="col-md-12 titulo">
+				<h2>Vai dar bom!</h2>
 			</div>
-		</form>
+			
+			<div class="col-md-5 descricao">
+				Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. Vai dar bom. 
+				<br>
+				<a href="" class="link">Visualizar evento...</a>			
+			</div>
+			
+			<div class="col-md-7 imagem">
+				<img src="<c:url value='/resource/img/turtle-logo-transp-teste.png' />">
+			</div>
+		</div>
 	</div>
+	
+	<footer class="rodape">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2 col-md-offset-2">
+					<ul>
+						<li>Acesso ao sistema</li>
+					</ul>
+				</div>
+				
+				<div class="col-md-2">
+					<ul>
+						<li>
+							Eventos
+						</li>
+					</ul>
+				</div>
+				
+				<div class="col-md-6"></div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
