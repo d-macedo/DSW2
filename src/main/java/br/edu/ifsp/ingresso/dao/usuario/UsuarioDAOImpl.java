@@ -42,34 +42,35 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public Usuario findById(long id) {
 		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE USU_COD = :id").setParameter("id", id);
-		Usuario user = (Usuario) query.getSingleResult();
-		return user;
+		try {
+			Usuario user = (Usuario) query.getSingleResult();
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> findAll(){
 		Query query = manager.createQuery("SELECT * FROM Usuario");
-		List<Usuario> users = query.getResultList();
-		
-		if(users.isEmpty()) {
-			return null;
-		}else {
+		try {
+			List<Usuario> users = query.getResultList();
 			return users;
-		}	
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@Override
 	public Usuario findByEmail(String email) {
 		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE USU_EMAIL = :email").setParameter("email", email);
-		Usuario user = (Usuario) query.getSingleResult(); 
-		
-		if(user != null) {
+		try {
+			Usuario user = (Usuario) query.getSingleResult();
 			return user;
-		}else {
+		} catch(Exception e) {
 			return null;
 		}
-		
 	}
 
 }

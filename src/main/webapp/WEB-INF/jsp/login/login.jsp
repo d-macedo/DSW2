@@ -20,12 +20,15 @@
 	</div>
 	<div class="form">
   		<div class="thumbnail"><img src="<c:url value="/resource/img/turtle-logo-transp-teste.png"/>"/></div>
+  		<c:forEach var="error" items="${errors}">
+  			<div class="erro">${error.category}</div>
+		</c:forEach>
   		<form  action ="<c:url value="/login/autenticar" />"  method="post" class="login-form">
 	    		<input name ="usuario.usu_email" type="text" placeholder="usuário"/>
 	    		<input name ="usuario.usu_senha" type="password" placeholder="senha"/>
 	    		<button type="submit" name="buttonLogin">login</button>
-	    		<p class="message">Não Registrado? <a href="#">Cadastre-se aqui</a></p>
   		</form>
+  		<p class="message">Não Registrado? <a href="#">Cadastre-se aqui</a></p>
 	</div>
 </body>
 </html>

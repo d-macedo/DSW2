@@ -23,7 +23,7 @@ public class CadastroUsuarioController {
 	}
 	
 	
-	@Path("/cadastro_usuario")
+	@Path("/cadastrar/usuario")
 	public void cadastro_usuario() {
 		
 	}

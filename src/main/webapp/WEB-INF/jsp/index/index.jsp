@@ -31,14 +31,23 @@
 				<li><a href="<c:url value='/' />">Turtle Tickets</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<c:url value='/cadastrar' />"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
-				<li><a href="<c:url value='/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<c:if test="${usuarioSession.logado}">
+			    		<li><a href="">Olá, ${usuarioSession.nome }!</a></li> 
+			    		<li><a href="<c:url value="/logout"/>">Logout</a></li>
+			    </c:if>
+			    
+			    <c:if test="${not usuarioSession.logado}">
+			      	<li><a href="">Você não está logado. ${usuarioSession.nome}</a></li> 
+					<li><a href="<c:url value='/cadastrar/usuario' />"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+					<li><a href="<c:url value='/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			    </c:if>
+			    
 			</ul>
 		</div>
 	</nav>
 	
 	<div class="container">
-		
+	
 		<div class="row pesquisarIndex">
 			<form method="get" action="">
 				<div class="col-md-3">

@@ -32,7 +32,17 @@ public class LoginController {
 
 	@Path("/login")
 	public void login() {
-
+		if(usuarioSession.isLogado()) {
+			result.redirectTo(IndexController.class).index();
+		}
+	}
+	
+	@Path("/logout")
+	public void logout() {
+		if(usuarioSession.isLogado()) {
+			usuarioSession.logout();
+		}
+		result.redirectTo(IndexController.class).index();
 	}
 
 	@Post
@@ -41,7 +51,7 @@ public class LoginController {
 		Usuario carregado = dao.findByEmail(usuario.getUsu_email());
 		
 		if (carregado == null) {
-			validator.add(new SimpleMessage("Login e/ou senha inválidos", "usuario.login"));
+			validator.add(new SimpleMessage("Login ou senha inválidos", "usuario.login"));
 		}
 		
 		validator.onErrorUsePageOf(LoginController.class).login();
