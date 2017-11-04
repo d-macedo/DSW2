@@ -3,8 +3,10 @@ package br.edu.ifsp.ingresso.controllers;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.ifsp.ingresso.dao.usuario.UsuarioDAOImpl;
@@ -18,38 +20,41 @@ public class CadastroUsuarioController {
 	@Inject
 	private Validator validator;
 	
+	@Inject
+	private Result result;
+	
 	public CadastroUsuarioController() {
 		this.dao = new UsuarioDAOImpl();
 	}
 	
-	
+	@Get
 	@Path("/cadastrar/usuario")
-	public void cadastro_usuario() {
+	public void cadastroUsuario() {
 		
 	}
 	
 	@Post
-	@Path("/cadastro_usuario/cadastrar")
-	public void cadastrar (Usuario user) {
-		Usuario carregado = new Usuario();
+	@Path("/cadastrar/usuario")
+	public void cadastrar (Usuario usuario) {
 		
-		if (user.getUsu_email().equals(null)) {
-			validator.add(new SimpleMessage("email","Favor adicionar o email"));
+		if (usuario != null) {
+			if(usuario.getUsu_email() == null) {
+				validator.add(new SimpleMessage("email","Favor adicionar o email."));
+			}
+			if (usuario.getUsu_senha() == null) {
+				validator.add(new SimpleMessage("senha","Favor adicionar a senha."));
+			}
+			if(usuario.getUsu_nome() == null) {
+				validator.add(new SimpleMessage("nome", "Favor adicionar o nome."));
+			}
+		}else {
+			validator.add(new SimpleMessage("form", "Favor adicionar dados corretamente."));
 		}
-		else if (user.getUsu_senha().equals(null)) {
-			validator.add(new SimpleMessage("senha","Favor adicionar a senha"));
-		}
-		else if(user.getUsu_nome().equals(null)) {
-			validator.add(new SimpleMessage("nome", "Favor adicionar o nome"));
-		}
-		
-		
-		carregado.setUsu_email(user.getUsu_email());
-		carregado.setUsu_nome(user.getUsu_nome());
-		carregado.setUsu_senha(user.getUsu_senha());
-		carregado.setUsu_tipo(user.getUsu_tipo());
-		
-		dao.persist(carregado);
-	}
 
+		validator.onErrorUsePageOf(CadastroUsuarioController.class).cadastroUsuario();
+			
+		dao.persist(usuario);
+		result.redirectTo(IndexController.class).index();
+		
+	}
 }
