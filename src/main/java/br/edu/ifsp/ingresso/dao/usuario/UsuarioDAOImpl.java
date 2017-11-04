@@ -15,7 +15,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	private EntityManager manager; 
 	
 	public UsuarioDAOImpl() {
-		super();
 		this.manager = FactoryEntityManager.getEntityManager();
 	}
 
