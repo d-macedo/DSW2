@@ -22,25 +22,25 @@
 		<h1>Cadastro de Usuário</h1>
 	</div>
 	<div class="container">
-		<form class="form-cadastro-usuario">
+		<form class="form-cadastro-usuario" action="<c:url value="/cadastro_usuario/cadastrar"/>" method="post">
 			<div class="form-group">
 		    	<label for="email">Endereço de Email</label>
-		    	<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+		    	<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="user.usu_email">
 		    <small id="emailHelp" class="form-text text-muted">Nós nunca compartilharemos o seu email com ninguém.</small>
 			</div>
 		  	<div class="form-group">
 		    	<label for="password">Senha</label>
-		    	<input type="password" class="form-control" id="password" placeholder="Senha">
+		    	<input type="password" class="form-control" id="password" placeholder="Senha" name="user.usu_senha">
 		  	</div>
 
 		  	<div class="form-group">
 		    	<label for="name">Nome</label>
-		    	<input type="text" class="form-control" id="name" placeholder="Nome">
+		    	<input type="text" class="form-control" id="name" placeholder="Nome" name="user.usu_nome">
 		  	</div>
 
 		  	<div class="form-group">
 		    	<label for="tipo">Tipo</label>
-		    		<select class="form-control" id="tipo" placeholder="Tipo">
+		    		<select class="form-control" id="tipo" placeholder="Tipo" name="user.usu_tipo">
 		    			<option value="E">Executor</option>
 		    			<option value="G">Gerente</option>
 		    		</select>
