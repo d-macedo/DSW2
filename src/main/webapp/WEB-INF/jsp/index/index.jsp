@@ -31,13 +31,30 @@
 				<li><a href="<c:url value='/' />">Turtle Tickets</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<c:if test="${usuarioSession.logado}">
-			    		<li><a href="">Olá, ${usuarioSession.nome }!</a></li> 
-			    		<li><a href="<c:url value="/logout"/>">Logout</a></li>
+				<c:if test="${sessao.logado}">
+				
+					<!-- GERENTE -->
+					<c:if test="${sessao.tipoUsuario == 'G'}">
+						<li><a href="">Cadastrar Usuário</a></li> 
+						<li><a href="">Aguardando Aprovação</a></li> 
+						<li><a href="">Balanço Geral</a></li> 
+			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
+					</c:if>
+					<!-- EXECUTOR -->
+					<c:if test="${sessao.tipoUsuario == 'E'}">
+						<li><a href="">Cadastrar Evento</a></li> 
+						<li><a href="">Meus Eventos</a></li> 
+			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
+					</c:if>
+					<!-- COMPRADOR -->
+					<c:if test="${sessao.tipoUsuario == 'C'}">
+				    		<li><a href="">Olá, ${sessao.nome}!</a></li> 
+				    		<li><a href="<c:url value="/logout"/>">Logout</a></li>
+				    	</c:if>
+				    	
 			    </c:if>
 			    
-			    <c:if test="${not usuarioSession.logado}">
-			      	<li><a href="">Você não está logado. ${usuarioSession.nome}</a></li> 
+			    <c:if test="${empty sessao or not sessao.logado}"> 
 					<li><a href="<c:url value='/cadastrar/usuario' />"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
 					<li><a href="<c:url value='/login' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			    </c:if>

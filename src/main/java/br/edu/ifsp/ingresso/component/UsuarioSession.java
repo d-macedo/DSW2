@@ -3,10 +3,12 @@ package br.edu.ifsp.ingresso.component;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import br.edu.ifsp.ingresso.models.Usuario;
 
 @SessionScoped
+@Named("sessao")
 public class UsuarioSession implements Serializable{
 	private static final long serialVersionUID = -2883031389844933915L;
 	
@@ -26,5 +28,9 @@ public class UsuarioSession implements Serializable{
 	
 	public void logout() {
 		this.logado = null;
+	}
+	
+	public String getTipoUsuario() {
+		return String.valueOf(this.logado.getUsu_tipo());
 	}
 }
