@@ -30,7 +30,6 @@ public class CadastroUsuarioController {
 	
 	@Get
 	@Path("/cadastrar/usuario")
-	@CustomBrutauthRules(DeveSerGerente.class)
 	public void cadastroUsuario() {
 		
 	}

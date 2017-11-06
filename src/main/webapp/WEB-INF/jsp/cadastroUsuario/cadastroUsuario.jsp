@@ -42,14 +42,20 @@
 		    		<label for="name">Nome</label>
 		    		<input type="text" class="form-control" id="name" placeholder="Nome" name="usuario.usu_nome">
 		  	</div>
-
-		  	<div class="form-group">
-		    		<label for="tipo">Tipo</label>
-		    		<select class="form-control" id="tipo" placeholder="Tipo" name="usuario.usu_tipo">
-		    			<option value="E">Executor</option>
-		    			<option value="G">Gerente</option>
-		    		</select>
-		  	</div>
+			
+			<c:if test="${sessao.logado}">
+				<c:if test="${sessao.tipoUsuario == 'G'}">
+				  	<div class="form-group">
+				    		<label for="tipo">Tipo</label>
+				    		<select class="form-control" id="tipo" placeholder="Tipo" name="usuario.usu_tipo">
+				    			<option value="C">Comprador</option>
+				    			<option value="E">Executor</option>
+				    			<option value="G">Gerente</option>
+				    		</select>
+				  	</div>
+				</c:if>
+			</c:if>
+			
 		  	<button type="submit" class="btn">Cadastrar-se</button>
 		</form>
 	</div>
