@@ -40,17 +40,19 @@
 						<li><a href="">Balanço Geral</a></li>
 			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
+					
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
-						<li><a href="/ingresso/cadastrar/evento">Cadastrar Evento</a></li> 
+						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar Evento</a></li> 
 						<li><a href="">Meus Eventos</a></li> 
-			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
+					<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
+					
 					<!-- COMPRADOR -->
 					<c:if test="${sessao.tipoUsuario == 'C'}">
 				    		<li><a href="">Olá, ${sessao.nome}!</a></li> 
 				    		<li><a href="<c:url value="/logout"/>">Logout</a></li>
-				    	</c:if>
+				    </c:if>
 				    	
 			    </c:if>
 			    
@@ -123,3 +125,4 @@
 	</footer>
 </body>
 </html>
+			    			
