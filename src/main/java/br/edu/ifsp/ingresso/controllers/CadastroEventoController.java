@@ -16,27 +16,62 @@ import br.edu.ifsp.ingresso.models.Usuario;
 @Controller
 public class CadastroEventoController {
 	private EventoDAOImpl dao;
-	
+
 	@Inject
 	private Validator validator;
-	
+
 	@Inject
 	private Result result;
-	
+
 	public CadastroEventoController() {
 		this.dao = new EventoDAOImpl();
 	}
-	
+
 	@Get
 	@Path("/cadastrar/evento")
 	public void cadastroEvento() {
-		
+
 	}
-	
+
+	@Post
+	@Path("/cadastrar/evento")
+	public void cadastrar(Evento evento) {
+		if (evento != null) {
+			if (evento.getEve_titulo() == null) {
+				validator.add(new SimpleMessage("tituloEvento", "Favor adicionar um título."));
+			}
+			if (evento.getEve_descricao() == null) {
+				validator.add(new SimpleMessage("descricaoEvento", "Favor adicionar uma descrição."));
+			}
+			if (evento.getEve_data() == null) {
+				validator.add(new SimpleMessage("dataEvento", "Favor adicionar uma data."));
+			}
+			if (evento.getEve_max_inteira() == null) {
+				validator.add(new SimpleMessage("maxIntEvento", "Favor adicionar um máximo de entradas inteiras."));
+			}
+			if (evento.getEve_max_meia() == null) {
+				validator.add(new SimpleMessage("maxMeiaEvento", "Favor adicionar um máximo de entradas inteiras."));
+			}
+			if (evento.getEve_taxa() == null) {
+				validator.add(new SimpleMessage("taxaEvento", "Favor adicionar uma taxa."));
+			}
+			if (evento.getEve_taxa() == null) {
+				validator.add(new SimpleMessage("cidadeEvento", "Favor adicionar uma cidade."));
+			}
+
+			validator.onErrorUsePageOf(CadastroEventoController.class).cadastroEvento();
+
+			dao.persist(evento);
+			result.redirectTo(CadastroEventoController.class).cadastroEvento();
+		} else {
+			validator.add(new SimpleMessage("form", "Favor adicionar dados corretamente."));
+		}
+	}
+
 	@Get("/evento/{evento_id}")
 	public void buscarEvento(Long evento_id) {
 		Evento evento = dao.findById(evento_id);
-		
+
 		System.out.println(evento.getEve_titulo());
 	}
 }

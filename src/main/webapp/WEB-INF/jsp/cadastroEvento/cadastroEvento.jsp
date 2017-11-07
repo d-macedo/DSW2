@@ -76,11 +76,9 @@
 	<div class="container">
 
 		<div class="row pesquisarIndex">
-			<form action="<c:url value="/cadastrar/usuario"/>" method="post">
-				<c:forEach var="error" items="${errors}">
-					<div class="erro">${error.message}</div>
-				</c:forEach>
+			<form>
 				
+
 				<div class="col-md-3">
 					<input type="text" placeholder="Pesquisar eventos"
 						name="nomeEvento">
@@ -100,34 +98,44 @@
 		</div>
 
 		<div class="row eventoIndex">
-			<form>
+			<c:forEach var="error" items="${errors}">
+					<div class="erro">${error.message}</div>
+				</c:forEach>
+			<form action="<c:url value="/cadastrar/evento"/>" method="post">
 				<div class="form-group col-md-12">
+					<div class="erro">${error.nome}</div>
 					<label for="tituloEvento">Título do Evento</label> <input
 						type="text" class="form-control" id="tituloEvento"
-						name="tituloEvento" placeholder="Digite o título do Evento">
+						name="evento.eve_titulo" placeholder="Digite o título do Evento">
 				</div>
 				<div class="form-group col-md-12">
+					<div class="erro">${error.nome}</div>
 					<label for="descricaoEvento">Descrição do Evento</label>
 					<textarea class="form-control" id="descricaoEvento"
-						name="descricaoEvento" placeholder="Digite a descrição do Evento"></textarea>
+						name="evento.eve_descricao"
+						placeholder="Digite a descrição do Evento"></textarea>
 				</div>
 				<div class="form-group col-md-12">
-					<label for="dataEvento">Data do Evento</label> <input type="date"
-						class="form-control" id="dataEvento" name="dataEvento">
-				</div>
+					<div class="erro">${error.nome}</div>
+					<label for="dataEvento">Data do Evento</label> 
+					<input type="date" class="form-control" id="dataEvento" name="evento.eve_data">
+				</div> 
 				<div class="form-group col-md-6">
+					<div class="erro">${error.nome}</div>
 					<label for="maxIntEvento">Máximo de Ingressos do tipo
 						Inteiro do Evento</label> <input type="number" class="form-control"
-						id="maxIntEvento" name="maxIntEvento" min=0>
+						id="maxIntEvento" name="evento.eve_max_inteira" min=0>
 				</div>
 				<div class="form-group col-md-6">
+					<div class="erro">${error.nome}</div>
 					<label for="maxMeiaEvento">Máximo de Ingressos do tipo Meia
 						do Evento</label> <input type="number" class="form-control"
-						id="maxMeiaEvento" name="maxMeiaEvento" min=0>
+						id="maxMeiaEvento" name="evento.eve_max_meia" min=0>
 				</div>
 				<div class="form-group col-md-12">
+					<div class="erro">${error.nome}</div>
 					<label for="taxaEvento">Taxa do Evento</label> <input type="number"
-						class="form-control" id="taxaEvento" name="taxaEvento">
+						class="form-control" id="taxaEvento" name="evento.eve_taxa">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="cidadeEvento">Cidade do Evento</label> <select
@@ -142,6 +150,7 @@
 					</select>
 				</div>
 				<div class="form-group col-md-12">
+					<div class="erro">${error.nome}</div>
 					<label for="categoriaEvento">Categoria do Evento</label> <select
 						class="form-control" id="categoriaEvento" name="categoriaEvento">
 						<option value="Stand-Up">Stand-Up</option>
