@@ -12,7 +12,7 @@ import br.edu.ifsp.ingresso.dao.usuario.UsuarioDAOImpl;
 import br.edu.ifsp.ingresso.models.Usuario;
 
 @Controller
-public class CadastroUsuarioController {
+public class UsuarioController {
 	
 	private UsuarioDAOImpl dao;
 	
@@ -22,7 +22,7 @@ public class CadastroUsuarioController {
 	@Inject
 	private Result result;
 	
-	public CadastroUsuarioController() {
+	public UsuarioController() {
 		this.dao = new UsuarioDAOImpl();
 	}
 	
@@ -53,7 +53,7 @@ public class CadastroUsuarioController {
 			validator.add(new SimpleMessage("form", "Favor adicionar dados corretamente."));
 		}
 
-		validator.onErrorUsePageOf(CadastroUsuarioController.class).cadastroUsuario();
+		validator.onErrorUsePageOf(UsuarioController.class).cadastroUsuario();
 			
 		dao.persist(usuario);
 		result.redirectTo(LoginController.class).login();

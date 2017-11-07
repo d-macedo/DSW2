@@ -14,7 +14,7 @@ import br.edu.ifsp.ingresso.models.Evento;
 import br.edu.ifsp.ingresso.models.Usuario;
 
 @Controller
-public class CadastroEventoController {
+public class EventoController {
 	private EventoDAOImpl dao;
 
 	@Inject
@@ -23,7 +23,7 @@ public class CadastroEventoController {
 	@Inject
 	private Result result;
 
-	public CadastroEventoController() {
+	public EventoController() {
 		this.dao = new EventoDAOImpl();
 	}
 
@@ -59,10 +59,10 @@ public class CadastroEventoController {
 				validator.add(new SimpleMessage("cidadeEvento", "Favor adicionar uma cidade."));
 			}
 
-			validator.onErrorUsePageOf(CadastroEventoController.class).cadastroEvento();
+			validator.onErrorUsePageOf(EventoController.class).cadastroEvento();
 
 			dao.persist(evento);
-			result.redirectTo(CadastroEventoController.class).cadastroEvento();
+			result.redirectTo(EventoController.class).cadastroEvento();
 		} else {
 			validator.add(new SimpleMessage("form", "Favor adicionar dados corretamente."));
 		}
