@@ -48,7 +48,6 @@
 				  	<div class="form-group">
 				    		<label for="tipo">Tipo</label>
 				    		<select class="form-control" id="tipo" placeholder="Tipo" name="usuario.usu_tipo">
-				    			<option value="C">Comprador</option>
 				    			<option value="E">Executor</option>
 				    			<option value="G">Gerente</option>
 				    		</select>

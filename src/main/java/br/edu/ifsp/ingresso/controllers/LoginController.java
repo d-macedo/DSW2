@@ -52,6 +52,11 @@ public class LoginController {
 		
 		if (carregado == null) {
 			validator.add(new SimpleMessage("Login ou senha inválidos", "usuario.login"));
+		} else {
+			String str = usuario.getUsu_senha();
+			if(!str.equals(carregado.getUsu_senha())) {
+				validator.add(new SimpleMessage("Login ou senha inválidos", "usuario.senha"));
+			}
 		}
 		
 		validator.onErrorUsePageOf(LoginController.class).login();

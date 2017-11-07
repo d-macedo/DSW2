@@ -35,9 +35,9 @@
 				
 					<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
-						<li><a href="">Cadastrar Usuário</a></li> 
+						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
 						<li><a href="">Aguardando Aprovação</a></li> 
-						<li><a href="">Balanço Geral</a></li> 
+						<li><a href="">Balanço Geral</a></li>
 			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 					<!-- EXECUTOR -->

@@ -31,6 +31,6 @@ public class UsuarioSession implements Serializable{
 	}
 	
 	public String getTipoUsuario() {
-		return String.valueOf(this.logado.getUsu_tipo());
+		return this.logado.getUsu_tipo();
 	}
 }

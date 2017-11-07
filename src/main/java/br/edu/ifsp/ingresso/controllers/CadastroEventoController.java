@@ -33,5 +33,10 @@ public class CadastroEventoController {
 		
 	}
 	
-
+	@Get("/evento/{evento_id}")
+	public void buscarEvento(Long evento_id) {
+		Evento evento = dao.findById(evento_id);
+		
+		System.out.println(evento.getEve_titulo());
+	}
 }

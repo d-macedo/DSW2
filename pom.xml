@@ -98,11 +98,5 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>br.com.caelum.vraptor</groupId>
-			<artifactId>vraptor-brutauth</artifactId>
-			<version>4.0.4</version>
-		</dependency>
-
 	</dependencies>
 </project>
