@@ -8,7 +8,8 @@
 	
 		<!-- entidade mapeada -->
 		<class>br.edu.ifsp.ingresso.models.Usuario</class>
-
+		<class>br.edu.ifsp.ingresso.models.Evento</class>
+		
 		<properties>
 			<!-- dados da conexao -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

@@ -11,7 +11,6 @@ import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.ifsp.ingresso.dao.evento.EventoDAOImpl;
 import br.edu.ifsp.ingresso.models.Evento;
-import br.edu.ifsp.ingresso.models.Usuario;
 
 @Controller
 public class EventoController {
@@ -60,7 +59,10 @@ public class EventoController {
 			}
 
 			validator.onErrorUsePageOf(EventoController.class).cadastroEvento();
-
+			
+			evento.setEve_status(1);
+			evento.setEve_taxa((float) 0.0);
+			
 			dao.persist(evento);
 			result.redirectTo(EventoController.class).cadastroEvento();
 		} else {

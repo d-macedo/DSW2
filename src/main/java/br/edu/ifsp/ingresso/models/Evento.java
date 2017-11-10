@@ -1,7 +1,5 @@
 package br.edu.ifsp.ingresso.models;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -57,19 +55,15 @@ public class Evento {
 	private Integer eve_status;
 
 	@Column(name = "EVE_EXECUTOR")
-	@NotNull
 	private Integer eve_executor;
 
 	@Column(name = "EVE_DATA_ICS")
-	@NotNull
 	private Date eve_data_ics;
 
 	@Column(name = "EVE_GERENTE")
-	@NotNull
 	private Integer eve_gerente;
-
+	
 	@Column(name = "EVE_DATA_APROV")
-	@NotNull
 	private Date eve_data_aprov;
 
 	@Column(name = "EVE_IMG_PATH")
@@ -119,20 +113,8 @@ public class Evento {
 		return eve_data;
 	}
 
-//	public void setEve_data(Date eve_data) {
-//		this.eve_data = eve_data;
-//	}
-
-	public void setEve_data(String eve_data) {
-		try {
-			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-			java.sql.Date data;
-			data = new java.sql.Date(format.parse(eve_data).getTime());
-			this.eve_data = data;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
+	public void setEve_data(Date eve_data) {
+		this.eve_data = eve_data;
 	}
 
 	public Integer getEve_max_inteira() {

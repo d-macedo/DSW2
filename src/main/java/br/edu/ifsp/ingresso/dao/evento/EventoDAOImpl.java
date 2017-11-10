@@ -19,23 +19,23 @@ public class EventoDAOImpl implements EventoDAO {
 	}
 
 	@Override
-	public void persist(Evento user) {
+	public void persist(Evento evento) {
 		manager.getTransaction().begin();
-		manager.persist(user);
+		manager.persist(evento);
 		manager.getTransaction().commit();
 	}
 	
 	@Override
-	public void update(Evento user) {
+	public void update(Evento evento) {
 		manager.getTransaction().begin();
-		manager.merge(user);
+		manager.merge(evento);
 		manager.getTransaction().commit();
 	}
 	
 	@Override
-	public void delete (Evento user) {
+	public void delete (Evento evento) {
 		manager.getTransaction().begin();
-		manager.remove(user);
+		manager.remove(evento);
 		manager.getTransaction().commit();
 	}
 	
@@ -43,8 +43,8 @@ public class EventoDAOImpl implements EventoDAO {
 	public Evento findById(long id) {
 		Query query = manager.createQuery("SELECT u FROM Evento u WHERE EVE_COD = :id").setParameter("id", id);
 		try {
-			Evento user = (Evento) query.getSingleResult();
-			return user;
+			Evento evento = (Evento) query.getSingleResult();
+			return evento;
 		} catch (Exception e) {
 			return null;
 		}
@@ -55,8 +55,8 @@ public class EventoDAOImpl implements EventoDAO {
 	public List<Evento> findAll(){
 		Query query = manager.createQuery("SELECT * FROM Evento");
 		try {
-			List<Evento> users = query.getResultList();
-			return users;
+			List<Evento> eventos = query.getResultList();
+			return eventos;
 		} catch (Exception e) {
 			return null;
 		}
