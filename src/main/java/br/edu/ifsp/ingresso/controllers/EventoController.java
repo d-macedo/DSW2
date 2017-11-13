@@ -69,11 +69,16 @@ public class EventoController {
 			validator.add(new SimpleMessage("form", "Favor adicionar dados corretamente."));
 		}
 	}
+	
+	@Get("/evento")
+	public void evento() {
+		
+	}
 
-	@Get("/evento/{evento_id}")
+	/*@Get("/evento/{evento_id}")
 	public void buscarEvento(Long evento_id) {
 		Evento evento = dao.findById(evento_id);
 
 		System.out.println(evento.getEve_titulo());
-	}
+	}*/
 }

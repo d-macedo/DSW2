@@ -66,6 +66,12 @@ body{
 	margin-bottom: 15px;
 }
 
+.eventoIndex .tituloEvento {
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
 .eventoIndex .descricao{
 	text-align: justify;
     text-justify: inter-word;
