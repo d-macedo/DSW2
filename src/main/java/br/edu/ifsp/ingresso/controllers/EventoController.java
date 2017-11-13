@@ -75,10 +75,10 @@ public class EventoController {
 		
 	}
 
-	/*@Get("/evento/{evento_id}")
-	public void buscarEvento(Long evento_id) {
+	@Get("/evento/{evento_id}")
+	public void evento(Long evento_id) {
 		Evento evento = dao.findById(evento_id);
-
-		System.out.println(evento.getEve_titulo());
-	}*/
+		
+		result.include(evento);
+	}
 }

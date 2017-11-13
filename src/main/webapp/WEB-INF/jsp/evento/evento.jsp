@@ -99,28 +99,28 @@
 		<div class="row eventoIndex">
 			
 			<div class="col-md-12 tituloEvento">
-				<font>Megalomania's Rave</font>
+				<font>${evento.eve_titulo}</font>
 			</div>
 			
 			<div class="col-md-12 titulo">
 				<font>Descrição do Evento</font>
 			</div>
 			<div class="col-md-12 descricao">
-				<p>MEGALOMANIA's Rave a festa que vai te levar a loucura, venha curtir conosco em um ambiente fechado e seguro propricio para todas as suas loucuras !</p>
+				<p>${evento.eve_descricao}</p>
 			</div>
 			
 			<div class="col-md-12 titulo">
 				<font>Data do Evento</font>
 			</div> 
 			<div class="col-md-12 descricao">
-				<p>15/12/2017</p>
+				<p>${evento.eve_data}</p>
 			</div>
 			
 			<div class="col-md-12 titulo">
 				<font>Categoria do Evento</font>
 			</div>
 			<div class="col-md-12 descricao">
-				<p>Festa Musica Eletronica</p>
+				<p>${evento.eve_categoria} Categoria</p>
 			</div>
 			
 			<div class="col-md-6 titulo">
@@ -131,10 +131,10 @@
 			</div>
 			
 			<div class="col-md-6 descricao">
-				<p>São Paulo</p>
+				<p>${evento.eve_local} Estado</p>
 			</div>
 			<div class="col-md-6 descricao">
-				<p>Campinas</p>
+				<p>${evento.eve_local} Cidade</p>
 			</div>
 			
 			<div class="col-md-6 titulo">
@@ -145,10 +145,10 @@
 			</div>
 			
 			<div class="col-md-6 descricao">
-				<p>250 Ingressos Categoria Inteiro</p>
+				<p>${evento.eve_max_inteira} Ingressos Categoria Inteiro</p>
 			</div>
 			<div class="col-md-6 descricao">
-				<p>100 Ingressos Categoria Meia</p>
+				<p>${evento.eve_max_meia} Ingressos Categoria Meia</p>
 			</div>
 			
 			<div class="col-md-6 titulo">
@@ -160,14 +160,11 @@
 			</div>
 			
 			<div class="col-md-6 descricao">
-				<p>R$ 90.00  --- 1º Lote - Inteiro</p>
-				<p>R$ 110.00 --- 2º Lote - Inteiro</p>
-				<p>R$ 120.00 --- 3º Lote - Inteiro</p>
-				<p>Vendas dos ingressos remanescentes apenas pessoalmente com promoters ou caixas</p>
+				<p>R$ ${evento.eve_taxa} --- Inteiro</p>
 			</div>
 			
 			<div class="col-md-6 imagem">
-				<p>PLACEHOLDER IMAGEM</p>
+				<p><img src="${evento.eve_img_path}">PLACEHOLDER IMAGEM</p>
 			</div>
 			
 			<div class="col-md-12">
