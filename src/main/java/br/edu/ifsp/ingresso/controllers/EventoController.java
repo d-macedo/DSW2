@@ -1,5 +1,9 @@
 package br.edu.ifsp.ingresso.controllers;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -9,6 +13,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.ifsp.ingresso.component.UsuarioSession;
 import br.edu.ifsp.ingresso.dao.evento.EventoDAOImpl;
 import br.edu.ifsp.ingresso.models.Evento;
 
@@ -21,6 +26,9 @@ public class EventoController {
 
 	@Inject
 	private Result result;
+	
+	@Inject
+	private UsuarioSession usuarioSession;
 
 	public EventoController() {
 		this.dao = new EventoDAOImpl();
@@ -35,6 +43,8 @@ public class EventoController {
 	@Post
 	@Path("/cadastrar/evento")
 	public void cadastrar(Evento evento) {
+		evento.setEve_executor((int) usuarioSession.getId());
+		System.out.println(evento.getEve_data());
 		if (evento != null) {
 			if (evento.getEve_titulo() == null) {
 				validator.add(new SimpleMessage("tituloEvento", "Favor adicionar um título."));
@@ -46,20 +56,17 @@ public class EventoController {
 				validator.add(new SimpleMessage("dataEvento", "Favor adicionar uma data."));
 			}
 			if (evento.getEve_max_inteira() == null) {
-				validator.add(new SimpleMessage("maxIntEvento", "Favor adicionar um máximo de entradas inteiras."));
+				validator.add(new SimpleMessage("maxIntEvento", "Favor adicionar um máximo de entradas do tipo inteira."));
 			}
 			if (evento.getEve_max_meia() == null) {
-				validator.add(new SimpleMessage("maxMeiaEvento", "Favor adicionar um máximo de entradas inteiras."));
-			}
-			if (evento.getEve_taxa() == null) {
-				validator.add(new SimpleMessage("taxaEvento", "Favor adicionar uma taxa."));
-			}
-			if (evento.getEve_taxa() == null) {
-				validator.add(new SimpleMessage("cidadeEvento", "Favor adicionar uma cidade."));
+				validator.add(new SimpleMessage("maxMeiaEvento", "Favor adicionar um máximo entradas do tipo meia."));
 			}
 
 			validator.onErrorUsePageOf(EventoController.class).cadastroEvento();
-			
+			Date date = new Date();
+			evento.setEve_data_ics(date);
+			evento.setEve_categoria(2);
+			evento.setEve_local(2);
 			evento.setEve_status(1);
 			evento.setEve_taxa((float) 0.0);
 			
@@ -81,4 +88,9 @@ public class EventoController {
 		
 		result.include(evento);
 	}
+	
+	public void validateValues(Evento evento) {
+		
+	}
+	
 }

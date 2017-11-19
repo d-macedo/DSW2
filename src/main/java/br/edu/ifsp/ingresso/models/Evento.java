@@ -38,6 +38,14 @@ public class Evento {
 	@NotNull
 	private Integer eve_max_meia;
 
+	@Column(name = "EVE_VALOR_MEIA")
+	@NotNull
+	private Double eve_valor_meia;
+
+	@Column(name = "EVE_VALOR_INTEIRA")
+	@NotNull
+	private Double eve_valor_inteira;
+
 	@Column(name = "EVE_TAXA")
 	@NotNull
 	private Float eve_taxa;
@@ -58,11 +66,12 @@ public class Evento {
 	private Integer eve_executor;
 
 	@Column(name = "EVE_DATA_ICS")
+	@NotNull
 	private Date eve_data_ics;
 
 	@Column(name = "EVE_GERENTE")
 	private Integer eve_gerente;
-	
+
 	@Column(name = "EVE_DATA_APROV")
 	private Date eve_data_aprov;
 
@@ -74,12 +83,14 @@ public class Evento {
 	}
 
 	public Evento(String eve_titulo, String eve_descricao, Date eve_data, Integer eve_max_inteira, Integer eve_max_meia,
-			Float eve_taxa, Integer eve_local, Integer eve_categoria) {
+			Double eve_valor_meia, Double eve_valor_inteira, Float eve_taxa, Integer eve_local, Integer eve_categoria) {
 		this.eve_titulo = eve_titulo;
 		this.eve_descricao = eve_descricao;
 		this.eve_data = eve_data;
 		this.eve_max_inteira = eve_max_inteira;
 		this.eve_max_meia = eve_max_meia;
+		this.eve_valor_inteira = eve_valor_inteira;
+		this.eve_valor_meia = eve_valor_meia;
 		this.eve_taxa = eve_taxa;
 		this.eve_local = eve_local;
 		this.eve_categoria = eve_categoria;
@@ -203,6 +214,22 @@ public class Evento {
 
 	public void setEve_img_path(String eve_img_path) {
 		this.eve_img_path = eve_img_path;
+	}
+
+	public Double getEve_valor_meia() {
+		return eve_valor_meia;
+	}
+
+	public void setEve_valor_meia(Double eve_valor_meia) {
+		this.eve_valor_meia = eve_valor_meia;
+	}
+
+	public Double getEve_valor_inteira() {
+		return eve_valor_inteira;
+	}
+
+	public void setEve_valor_inteira(Double eve_valor_inteira) {
+		this.eve_valor_inteira = eve_valor_inteira;
 	}
 
 	@Override
