@@ -13,6 +13,8 @@
 		<class>br.edu.ifsp.ingresso.models.ReservaStatus</class>
 		<class>br.edu.ifsp.ingresso.models.Pagamento</class>
 		<class>br.edu.ifsp.ingresso.models.PagamentoStatus</class>
+		<class>br.edu.ifsp.ingresso.models.Categoria</class>
+		<class>br.edu.ifsp.ingresso.models.Local</class>
 		
 		<properties>
 			<!-- dados da conexao -->
