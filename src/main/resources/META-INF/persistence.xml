@@ -11,6 +11,8 @@
 		<class>br.edu.ifsp.ingresso.models.Evento</class>
 		<class>br.edu.ifsp.ingresso.models.Reserva</class>
 		<class>br.edu.ifsp.ingresso.models.ReservaStatus</class>
+		<class>br.edu.ifsp.ingresso.models.Pagamento</class>
+		<class>br.edu.ifsp.ingresso.models.PagamentoStatus</class>
 		
 		<properties>
 			<!-- dados da conexao -->
