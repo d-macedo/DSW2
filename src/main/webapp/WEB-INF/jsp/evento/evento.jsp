@@ -120,56 +120,87 @@
 				<font>Categoria do Evento</font>
 			</div>
 			<div class="col-md-12 descricao">
-				<p>${evento.eve_categoria} Categoria</p>
+				<p>${evento.eve_categoria.cat_descricao}</p>
+			</div>
+			
+			<div class="col-md-12 titulo">
+				<font>Local do Evento</font>
+			</div>
+			
+			<div class="col-md-12 descricao">
+				<p>${evento.eve_local.loc_nome}</p>
+				<p>${evento.eve_local.loc_endereco}, ${evento.eve_local.loc_cidade.cid_abrev} - ${evento.eve_local.loc_cidade.cid_estado.est_sigla }</p>
 			</div>
 			
 			<div class="col-md-6 titulo">
-				<font>Estado do Evento</font>
+				<font>Valor Inteira</font>
 			</div>
 			<div class="col-md-6 titulo">
-				<font>Cidade do Evento</font>
+				<font>Valor Meia</font>
 			</div>
 			
 			<div class="col-md-6 descricao">
-				<p>${evento.eve_local} Estado</p>
+				<p>R$ ${evento.eve_valor_inteira}</p>
 			</div>
 			<div class="col-md-6 descricao">
-				<p>${evento.eve_local} Cidade</p>
+				<p>R$ ${evento.eve_valor_meia}</p>
 			</div>
 			
-			<div class="col-md-6 titulo">
-				<font>Ingressos Valor Inteiro Disponíveis</font>
-			</div>
-			<div class="col-md-6 titulo">
-				<font>Ingressos Valor Meia Disponíveis</font>
+		</div>
+		
+		<div class="row eventoIndex">
+		
+			<div class="col-md-12 titulo">
+				
+				<c:if test="${empty sessao or not sessao.logado}">
+					<font>Faça login para mais informações.</font>
+				</c:if>
+				
+				<c:if test="${sessao.logado}">
+					<c:if test="${(evento.eve_status == 1) and (sessao.tipoUsuario == 'G')}">
+						<button type="submit" class="btn btn-success">Aprovar Evento</button>
+						<button type="submit" class="btn btn-danger">Não Aprovar Evento</button>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 1) and (sessao.tipoUsuario != 'G')}">
+						<font>Evento aguardando aprovação.</font>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 2) and (sessao.tipoUsuario == 'G')}">
+						<button type="submit" class="btn btn-success">Aprovar Evento</button>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 2) and (sessao.tipoUsuario != 'G')}">
+						<font>Evento não aprovado pela gerência.</font>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'G')}">
+						<button type="submit" class="btn btn-danger">Não Aprovar Evento</button>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'E') and (sessao.id == evento.eve_executor)}">
+						<button type="submit" class="btn btn-danger">Cancelar Evento</button>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'E') and (sessao.id != evento.eve_executor)}">
+						<font>Você não é o executor deste evento.</font>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'C')}">
+						<button type="submit" class="btn btn-primary">Comprar Ingresso</button>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 4)}">
+						<font>Evento Cancelado</font>
+					</c:if>
+					
+					<c:if test="${(evento.eve_status == 5)}">
+						<font>Evento Finalizado</font>
+					</c:if>
+				</c:if>
+				
 			</div>
 			
-			<div class="col-md-6 descricao">
-				<p>${evento.eve_max_inteira} Ingressos Categoria Inteiro</p>
-			</div>
-			<div class="col-md-6 descricao">
-				<p>${evento.eve_max_meia} Ingressos Categoria Meia</p>
-			</div>
-			
-			<div class="col-md-6 titulo">
-				<font>Taxa do Evento</font>
-			</div>
-			
-			<div class="col-md-6 titulo">
-				<font>Imagens</font>
-			</div>
-			
-			<div class="col-md-6 descricao">
-				<p>R$ ${evento.eve_taxa} --- Inteiro</p>
-			</div>
-			
-			<div class="col-md-6 imagem">
-				<p><img src="${evento.eve_img_path}">PLACEHOLDER IMAGEM</p>
-			</div>
-			
-			<div class="col-md-12">
-				<button type="submit" class="btn btn-primary">Comprar Ingresso</button>
-			</div>
 		</div>
 	</div>
 	</div>
