@@ -77,11 +77,6 @@ public class EventoController {
 		}
 	}
 	
-	@Get("/evento")
-	public void evento() {
-		
-	}
-
 	@Get("/evento/{evento_id}")
 	public void evento(Long evento_id) {
 		Evento evento = dao.findById(evento_id);

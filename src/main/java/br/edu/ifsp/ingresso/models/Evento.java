@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -38,25 +40,26 @@ public class Evento {
 	@NotNull
 	private Integer eve_max_meia;
 
-	@Column(name = "EVE_VALOR_MEIA")
-	@NotNull
-	private Double eve_valor_meia;
-
 	@Column(name = "EVE_VALOR_INTEIRA")
 	@NotNull
-	private Double eve_valor_inteira;
-
+	private double eve_valor_inteira;
+	
+	@Column(name = "EVE_VALOR_MEIA")
+	@NotNull
+	private double eve_valor_meia;
+	
 	@Column(name = "EVE_TAXA")
 	@NotNull
 	private Float eve_taxa;
 
-	@Column(name = "EVE_LOCAL")
+	@ManyToOne
+	@JoinColumn(name = "EVE_LOCAL", referencedColumnName="LOC_COD")
 	@NotNull
-	private Integer eve_local;
-
-	@Column(name = "EVE_CATEGORIA")
-	@NotNull
-	private Integer eve_categoria;
+	private Local eve_local;
+	
+	@ManyToOne
+	@JoinColumn(name = "EVE_CATEGORIA", referencedColumnName="CAT_COD")
+	private Categoria eve_categoria;
 
 	@Column(name = "EVE_STATUS")
 	@NotNull
@@ -66,12 +69,11 @@ public class Evento {
 	private Integer eve_executor;
 
 	@Column(name = "EVE_DATA_ICS")
-	@NotNull
 	private Date eve_data_ics;
 
 	@Column(name = "EVE_GERENTE")
 	private Integer eve_gerente;
-
+	
 	@Column(name = "EVE_DATA_APROV")
 	private Date eve_data_aprov;
 
@@ -83,7 +85,7 @@ public class Evento {
 	}
 
 	public Evento(String eve_titulo, String eve_descricao, Date eve_data, Integer eve_max_inteira, Integer eve_max_meia,
-			Double eve_valor_meia, Double eve_valor_inteira, Float eve_taxa, Integer eve_local, Integer eve_categoria) {
+			Double eve_valor_inteira, Double eve_valor_meia, Float eve_taxa, Local eve_local, Categoria eve_categoria) {
 		this.eve_titulo = eve_titulo;
 		this.eve_descricao = eve_descricao;
 		this.eve_data = eve_data;
@@ -143,6 +145,22 @@ public class Evento {
 	public void setEve_max_meia(Integer eve_max_meia) {
 		this.eve_max_meia = eve_max_meia;
 	}
+	
+	public Double getEve_valor_inteira() {
+		return eve_valor_inteira;
+	}
+	
+	public Double getEve_valor_meia() {
+		return eve_valor_meia;
+	}
+	
+	public void setEve_valor_inteira(Double eve_valor_inteira) {
+		this.eve_valor_inteira = eve_valor_inteira;
+	}
+	
+	public void setEve_valor_meia(Double eve_valor_meia) {
+		this.eve_valor_meia = eve_valor_meia;
+	}
 
 	public Float getEve_taxa() {
 		return eve_taxa;
@@ -152,19 +170,19 @@ public class Evento {
 		this.eve_taxa = eve_taxa;
 	}
 
-	public Integer getEve_local() {
+	public Local getEve_local() {
 		return eve_local;
 	}
 
-	public void setEve_local(Integer eve_local) {
+	public void setEve_local(Local eve_local) {
 		this.eve_local = eve_local;
 	}
 
-	public Integer getEve_categoria() {
+	public Categoria getEve_categoria() {
 		return eve_categoria;
 	}
 
-	public void setEve_categoria(Integer eve_categoria) {
+	public void setEve_categoria(Categoria eve_categoria) {
 		this.eve_categoria = eve_categoria;
 	}
 
@@ -214,22 +232,6 @@ public class Evento {
 
 	public void setEve_img_path(String eve_img_path) {
 		this.eve_img_path = eve_img_path;
-	}
-
-	public Double getEve_valor_meia() {
-		return eve_valor_meia;
-	}
-
-	public void setEve_valor_meia(Double eve_valor_meia) {
-		this.eve_valor_meia = eve_valor_meia;
-	}
-
-	public Double getEve_valor_inteira() {
-		return eve_valor_inteira;
-	}
-
-	public void setEve_valor_inteira(Double eve_valor_inteira) {
-		this.eve_valor_inteira = eve_valor_inteira;
 	}
 
 	@Override

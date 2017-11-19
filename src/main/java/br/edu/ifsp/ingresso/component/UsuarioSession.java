@@ -22,8 +22,8 @@ public class UsuarioSession implements Serializable{
 		return logado.getUsu_nome();
 	}
 	
-	public long getId() {
-		return logado.getUsu_cod();
+	public Integer getId() {
+		return (int) logado.getUsu_cod();
 	}
 	  
 	public boolean isLogado() {
