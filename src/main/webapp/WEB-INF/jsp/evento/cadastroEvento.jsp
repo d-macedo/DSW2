@@ -27,9 +27,16 @@
 
 <script src="<c:url value='/resource/js/jquery-3.2.1.min.js' />"></script>
 <script src="<c:url value='/resource/js/bootstrap.min.js' />"></script>
+<script src="<c:url value='/resource/js/jquery.mask.min.js' />"></script>
 
 </head>
 <body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#dataEvento').mask('99/99/9999');
+		});
+	</script>
+
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><img
@@ -77,7 +84,7 @@
 
 		<div class="row pesquisarIndex">
 			<form>
-				
+
 				<div class="col-md-3">
 					<input type="text" placeholder="Pesquisar eventos"
 						name="nomeEvento">
@@ -95,47 +102,71 @@
 				</div>
 			</form>
 		</div>
+		<c:if test="${sessao.logado}">
 
-		<div class="row eventoIndex">
-			<c:forEach var="error" items="${errors}">
-				<div class="erro">${error.message}</div>
-			</c:forEach>
-			<form action="<c:url value="/cadastrar/evento"/>" method="post">
-				<div class="col-md-12"><h2>Cadastro de Evento</h2></div>
-				
-				<div class="form-group col-md-12">
-					<label for="tituloEvento">Título do Evento</label>
-					<input type="text" class="form-control" id="tituloEvento" name="evento.eve_titulo" placeholder="Digite o título do Evento">
-				</div>
-				<div class="form-group col-md-12">
-					<label for="descricaoEvento">Descrição do Evento</label>
-					<textarea class="form-control" id="descricaoEvento" name="evento.eve_descricao" placeholder="Digite a descrição do Evento"></textarea>
-				</div>
-				<div class="form-group col-md-12">
-					<label for="dataEvento">Data do Evento</label> 
-					<input type="date" class="form-control" id="dataEvento" name="evento.eve_data">
-				</div> 
-				<div class="form-group col-md-6">
-					<label for="maxIntEvento">Máximo de Ingressos do tipo Inteiro do Evento</label>
-					<input type="number" class="form-control" id="maxIntEvento" name="evento.eve_max_inteira" min=0>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="maxMeiaEvento">Máximo de Ingressos do tipo Meia do Evento</label> 
-					<input type="number" class="form-control" id="maxMeiaEvento" name="evento.eve_max_meia" min=0>
-				</div>
-				<!-- 
+			<!-- GERENTE -->
+			<c:if test="${sessao.tipoUsuario == 'G'}">
+
+			</c:if>
+			<!-- EXECUTOR -->
+			<c:if test="${sessao.tipoUsuario == 'E'}">
+				<div class="row eventoIndex">
+					<c:forEach var="error" items="${errors}">
+						<div class="erro">${error.message}</div>
+					</c:forEach>
+					<form action="<c:url value="/cadastrar/evento"/>" method="post">
+						<div class="col-md-12">
+							<h2>Cadastro de Evento</h2>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="tituloEvento">Título do Evento</label> <input
+								type="text" class="form-control" id="tituloEvento"
+								name="evento.eve_titulo" placeholder="Digite o título do Evento">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="descricaoEvento">Descrição do Evento</label>
+							<textarea class="form-control" id="descricaoEvento"
+								name="evento.eve_descricao"
+								placeholder="Digite a descrição do Evento"></textarea>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="dataEvento">Data do Evento</label> <input type="text"
+								class="form-control" id="dataEvento" name="evento.eve_data" placeholder="dd/mm/aaaa">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="maxIntEvento">Máximo de Ingressos do tipo
+								Inteiro do Evento</label> <input type="number" class="form-control"
+								id="maxIntEvento" name="evento.eve_max_inteira" min=0>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="maxMeiaEvento">Máximo de Ingressos do tipo
+								Meia do Evento</label> <input type="number" class="form-control"
+								id="maxMeiaEvento" name="evento.eve_max_meia" min=0>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="maxIntEvento">Valor de Ingressos do tipo
+								Inteiro do Evento</label> <input type="number" class="form-control"
+								id="valorIntEvento" name="evento.eve_valor_inteira" min=0>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="maxMeiaEvento">Valor de Ingressos do tipo
+								Meia do Evento</label> <input type="number" class="form-control"
+								id="valorMeiaEvento" name="evento.eve_valor_meia" min=0>
+						</div>
+						<!-- 
 				<div class="form-group col-md-12">
 					<label for="taxaEvento">Taxa do Evento</label> 
 					<input type="number" class="form-control" id="taxaEvento" name="evento.eve_taxa">
 				</div>
 				 -->
-				<div class="form-group col-md-12">
-					<label for="cidadeEvento">Cidade do Evento</label> 
-					<select class="form-control" id="cidadeEvento" name="evento.eve_local">
-						<option value="1">Campinas</option>
-					</select>
-				</div>
-				<!-- 
+						<div class="form-group col-md-12">
+							<label for="cidadeEvento">Cidade do Evento</label> <select
+								class="form-control" id="cidadeEvento" name="evento.eve_local">
+								<option value="1">Campinas</option>
+							</select>
+						</div>
+						<!-- 
 				<div class="form-group col-md-6">
 					<label for="estadoEvento">Estado do Evento</label> 
 					<select class="form-control" id="estadoEvento" name="estadoEvento">
@@ -143,18 +174,32 @@
 					</select>
 				</div>
 				-->
-				<div class="form-group col-md-12">
-					<label for="categoriaEvento">Categoria do Evento</label> 
-					<select class="form-control" id="categoriaEvento" name="evento.eve_categoria">
-						<option value="1">Stand-Up</option>
-						<option value="2">Show Musical</option>
-					</select>
+						<div class="form-group col-md-12">
+							<label for="categoriaEvento">Categoria do Evento</label> <select
+								class="form-control" id="categoriaEvento"
+								name="evento.eve_categoria">
+								<option value="1">Stand-Up</option>
+								<option value="2">Show Musical</option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary">Enviar</button>
+					</form>
 				</div>
-				<button type="submit" class="btn btn-primary">Enviar</button>
-			</form>
-		</div>
 	</div>
 	</div>
+	</c:if>
+	<!-- COMPRADOR -->
+	<c:if test="${sessao.tipoUsuario == 'C'}">
+
+	</c:if>
+
+	</c:if>
+
+	<c:if test="${empty sessao or not sessao.logado}">
+
+	</c:if>
+
+
 	<footer class="rodape">
 		<div class="container-fluid">
 			<div class="row">

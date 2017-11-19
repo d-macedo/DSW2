@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/turtletickets", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://192.168.0.11:3306/turtletickets", "ferdinando", "ferdinando");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
