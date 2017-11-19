@@ -9,6 +9,8 @@
 		<!-- entidade mapeada -->
 		<class>br.edu.ifsp.ingresso.models.Usuario</class>
 		<class>br.edu.ifsp.ingresso.models.Evento</class>
+		<class>br.edu.ifsp.ingresso.models.Reserva</class>
+		<class>br.edu.ifsp.ingresso.models.ReservaStatus</class>
 		
 		<properties>
 			<!-- dados da conexao -->
