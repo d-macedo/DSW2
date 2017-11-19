@@ -10,7 +10,7 @@ public class PagamentoDAOImpl implements PagamentoDAO{
 	
 	private EntityManager manager;
 	
-	public PagamentoDAOImpl(EntityManager manager) {
+	public PagamentoDAOImpl() {
 		super();
 		this.manager = FactoryEntityManager.getEntityManager();
 	}
@@ -38,7 +38,7 @@ public class PagamentoDAOImpl implements PagamentoDAO{
 
 	@Override
 	public Pagamento findById(long id) {
-		Query query = manager.createQuery("SELECT p FROM Reserva p WHERE PAG_COD = :id")
+		Query query = manager.createQuery("SELECT p FROM Pagamento p WHERE PAG_COD = :id")
 				.setParameter("id", id);;
 		try {
 			Pagamento pag = (Pagamento) query.getSingleResult();

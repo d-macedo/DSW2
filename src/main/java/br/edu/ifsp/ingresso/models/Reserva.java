@@ -22,13 +22,13 @@ public class Reserva {
 	@NotNull
 	private long res_cod_int;
 	
-	@Column(name = "RES_COMPRADOR")
-	@JoinColumn(name  = "USU_COD")
+	
+	@JoinColumn(name = "RES_COMPRADOR", referencedColumnName  = "USU_COD")
 	@ManyToOne
 	private Usuario res_comprador;
 	
-	@Column(name = "RES_EVENTO")
-	@JoinColumn(name = "EVE_COD")
+	
+	@JoinColumn(name = "RES_EVENTO", referencedColumnName = "EVE_COD")
 	@ManyToOne
 	private Evento res_evento;
 	
@@ -52,8 +52,8 @@ public class Reserva {
 	@NotNull
 	private double res_valor_total;
 	
-	@Column(name = "RES_STATUS")
-	@JoinColumn( name = "RST_COD")
+	
+	@JoinColumn(name = "RES_STATUS" ,referencedColumnName = "RST_COD")
 	@ManyToOne
 	private ReservaStatus res_status;
 	
