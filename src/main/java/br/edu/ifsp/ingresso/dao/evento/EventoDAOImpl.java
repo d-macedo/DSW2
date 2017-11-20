@@ -7,15 +7,20 @@ import javax.persistence.Query;
 
 
 import br.edu.ifsp.ingresso.conn.FactoryEntityManager;
+import br.edu.ifsp.ingresso.dao.pagamento.PagamentoDAOImpl;
 import br.edu.ifsp.ingresso.models.Evento;
+import br.edu.ifsp.ingresso.models.EventoStatus;
 
 
 public class EventoDAOImpl implements EventoDAO {
 	
 	private EntityManager manager; 
 	
+	private PagamentoDAOImpl daoPagamento;
+	
 	public EventoDAOImpl() {
 		this.manager = FactoryEntityManager.getEntityManager();
+		daoPagamento = new PagamentoDAOImpl();
 	}
 
 	@Override
@@ -60,6 +65,18 @@ public class EventoDAOImpl implements EventoDAO {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public void cancelarEvento(Evento evento) {
+		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = 4");
+		EventoStatus status = (EventoStatus) query.getSingleResult();
+		evento.setEve_status(status);
+		update(evento);
+	}
+	
+	public void reembolsarEvento(Evento entity) {
+		daoPagamento.reembolsarPagamentos(entity.getEve_cod());
+		cancelarEvento(entity);
 	}
 	
 	

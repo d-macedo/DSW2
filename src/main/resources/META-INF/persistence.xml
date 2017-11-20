@@ -15,6 +15,7 @@
 		<class>br.edu.ifsp.ingresso.models.PagamentoStatus</class>
 		<class>br.edu.ifsp.ingresso.models.Categoria</class>
 		<class>br.edu.ifsp.ingresso.models.Local</class>
+		<class>br.edu.ifsp.ingresso.models.EventoStatus</class>
 		
 		<properties>
 			<!-- dados da conexao -->

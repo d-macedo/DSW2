@@ -36,7 +36,6 @@ public class Pagamento {
 	private Date pag_data_ics;
 	
 	@Column(name = "PAG_DATA_STATUS")
-	@NotNull
 	private Date pag_data_status;
 	
 	@Column(name = "PAG_METODO")

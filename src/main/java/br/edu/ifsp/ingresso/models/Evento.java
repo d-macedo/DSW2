@@ -60,10 +60,11 @@ public class Evento {
 	@ManyToOne
 	@JoinColumn(name = "EVE_CATEGORIA", referencedColumnName="CAT_COD")
 	private Categoria eve_categoria;
-
-	@Column(name = "EVE_STATUS")
+	
+	@JoinColumn(name = "EVE_STATUS",referencedColumnName = "EST_COD")
 	@NotNull
-	private Integer eve_status;
+	@ManyToOne
+	private EventoStatus eve_status;
 
 	@Column(name = "EVE_EXECUTOR")
 	private Integer eve_executor;
@@ -186,14 +187,6 @@ public class Evento {
 		this.eve_categoria = eve_categoria;
 	}
 
-	public Integer getEve_status() {
-		return eve_status;
-	}
-
-	public void setEve_status(Integer eve_status) {
-		this.eve_status = eve_status;
-	}
-
 	public Integer getEve_executor() {
 		return eve_executor;
 	}
@@ -201,6 +194,16 @@ public class Evento {
 	public void setEve_executor(Integer eve_executor) {
 		this.eve_executor = eve_executor;
 	}
+	
+	public EventoStatus getEve_status() {
+		return eve_status;
+	}
+
+	public void setEve_status(EventoStatus eve_status) {
+		this.eve_status = eve_status;
+	}
+	
+	
 
 	public Date getEve_data_ics() {
 		return eve_data_ics;

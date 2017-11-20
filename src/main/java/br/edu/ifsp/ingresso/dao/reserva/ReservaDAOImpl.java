@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import br.edu.ifsp.ingresso.conn.FactoryEntityManager;
 import br.edu.ifsp.ingresso.models.Reserva;
+import br.edu.ifsp.ingresso.models.ReservaStatus;
 
 public class ReservaDAOImpl implements ReservaDAO{
 	
@@ -59,6 +60,13 @@ public class ReservaDAOImpl implements ReservaDAO{
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public void cancelarReserva(Reserva reserva) {
+		Query query = manager.createQuery("SELECT p FROM ReservaStatus p WHERE RST_COD = 4");
+		ReservaStatus status = (ReservaStatus) query.getSingleResult();
+		reserva.setRes_status(status);
+		update(reserva);
 	}
 	
 }
