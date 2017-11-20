@@ -1,5 +1,6 @@
 package br.edu.ifsp.ingresso.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.inject.Inject;
 import br.com.caelum.vraptor.Controller;
@@ -72,7 +73,19 @@ public class EventoController {
 	@Get("/evento/{evento_id}")
 	public void evento(Long evento_id) {
 		Evento evento = dao.findById(evento_id);
+		ArrayList<Evento> pendentes = dao.findPendentes();
+		
+		result.include("numeroPendentes", pendentes.size());
 		result.include(evento);
+		
+	}
+	
+	@Get("/evento/pendentes")
+	public void pendentesAprovacao() {
+		ArrayList<Evento> pendentes = dao.findPendentes();
+		
+		result.include("numeroPendentes", pendentes.size());
+		result.include("pendentes", pendentes);
 	}
 	
 	

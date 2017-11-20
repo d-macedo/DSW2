@@ -43,8 +43,8 @@
 
 					<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
-						<li><a href="">Cadastrar Usuário</a></li>
-						<li><a href="">Aguardando Aprovação</a></li>
+						<li><a href="../cadastrar/usuario">Cadastrar Usuário</a></li>
+						<li><a href="pendentes">Aguardando Aprovação (${numeroPendentes})</a></li>
 						<li><a href="">Balanço Geral</a></li>
 						<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
@@ -157,44 +157,44 @@
 				</c:if>
 				
 				<c:if test="${sessao.logado}">
-					<c:if test="${(evento.eve_status == 1) and (sessao.tipoUsuario == 'G')}">
+					<c:if test="${(evento.eve_status.est_cod == 1) and (sessao.tipoUsuario == 'G')}">
 						<button type="submit" class="btn btn-success">Aprovar Evento</button>
 						<button type="submit" class="btn btn-danger">Não Aprovar Evento</button>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 1) and (sessao.tipoUsuario != 'G')}">
+					<c:if test="${(evento.eve_status.est_cod == 1) and (sessao.tipoUsuario != 'G')}">
 						<font>Evento aguardando aprovação.</font>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 2) and (sessao.tipoUsuario == 'G')}">
+					<c:if test="${(evento.eve_status.est_cod == 2) and (sessao.tipoUsuario == 'G')}">
 						<button type="submit" class="btn btn-success">Aprovar Evento</button>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 2) and (sessao.tipoUsuario != 'G')}">
+					<c:if test="${(evento.eve_status.est_cod == 2) and (sessao.tipoUsuario != 'G')}">
 						<font>Evento não aprovado pela gerência.</font>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'G')}">
+					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'G')}">
 						<button type="submit" class="btn btn-danger">Não Aprovar Evento</button>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'E') and (sessao.id == evento.eve_executor)}">
+					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id == evento.eve_executor)}">
 						<button type="submit" class="btn btn-danger">Cancelar Evento</button>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'E') and (sessao.id != evento.eve_executor)}">
+					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id != evento.eve_executor)}">
 						<font>Você não é o executor deste evento.</font>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 3) and (sessao.tipoUsuario == 'C')}">
+					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'C')}">
 						<button type="submit" class="btn btn-primary">Comprar Ingresso</button>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 4)}">
+					<c:if test="${(evento.eve_status.est_cod == 4)}">
 						<font>Evento Cancelado</font>
 					</c:if>
 					
-					<c:if test="${(evento.eve_status == 5)}">
+					<c:if test="${(evento.eve_status.est_cod == 5)}">
 						<font>Evento Finalizado</font>
 					</c:if>
 				</c:if>
@@ -202,7 +202,6 @@
 			</div>
 			
 		</div>
-	</div>
 	</div>
 	<footer class="rodape">
 		<div class="container-fluid">

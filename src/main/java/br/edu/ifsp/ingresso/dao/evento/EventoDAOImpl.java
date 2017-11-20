@@ -1,5 +1,6 @@
 package br.edu.ifsp.ingresso.dao.evento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -61,6 +62,17 @@ public class EventoDAOImpl implements EventoDAO {
 		Query query = manager.createQuery("SELECT * FROM Evento");
 		try {
 			List<Evento> eventos = query.getResultList();
+			return eventos;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public ArrayList<Evento> findPendentes() {
+		Query query = manager.createQuery("SELECT u FROM Evento u WHERE EVE_STATUS = 1");
+		try {
+			ArrayList<Evento> eventos = (ArrayList<Evento>) query.getResultList();
 			return eventos;
 		} catch (Exception e) {
 			return null;
