@@ -177,9 +177,10 @@
 						<div class="form-group col-md-12">
 							<label for="categoriaEvento">Categoria do Evento</label> <select
 								class="form-control" id="categoriaEvento"
-								name="evento.eve_categoria">
-								<option value="1">Stand-Up</option>
-								<option value="2">Show Musical</option>
+								name="categoria_id">
+								<c:forEach items="${categorias}" var="cat">
+									<option value="${cat.cat_cod}">${cat.cat_descricao}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary">Enviar</button>

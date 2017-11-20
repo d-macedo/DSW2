@@ -2,6 +2,8 @@ package br.edu.ifsp.ingresso.controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.inject.Inject;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -10,9 +12,14 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.ifsp.ingresso.categoria.CategoriaDAOImpl;
 import br.edu.ifsp.ingresso.component.UsuarioSession;
 import br.edu.ifsp.ingresso.dao.evento.EventoDAOImpl;
+import br.edu.ifsp.ingresso.dao.local.LocalDAOImpl;
+import br.edu.ifsp.ingresso.models.Categoria;
 import br.edu.ifsp.ingresso.models.Evento;
+import br.edu.ifsp.ingresso.models.EventoStatus;
+import br.edu.ifsp.ingresso.models.Local;
 
 @Controller
 public class EventoController {
@@ -34,12 +41,16 @@ public class EventoController {
 	@Get
 	@Path("/cadastrar/evento")
 	public void cadastroEvento() {
-
+		CategoriaDAOImpl catDao = new CategoriaDAOImpl();
+		
+		List<Categoria> minhalista = catDao.findAll();
+		
+		result.include("categorias",minhalista);
 	}
 
 	@Post
 	@Path("/cadastrar/evento")
-	public void cadastrar(Evento evento) {
+	public void cadastrar(Evento evento, Integer categoria_id) {
 		evento.setEve_executor((int) usuarioSession.getId());
 		System.out.println(evento.getEve_data());
 		if (evento.getEve_titulo() == null) {
@@ -61,8 +72,15 @@ public class EventoController {
 		validator.onErrorUsePageOf(EventoController.class).cadastroEvento();
 		Date date = new Date();
 		evento.setEve_data_ics(date);
-		evento.setEve_categoria(null);
-		evento.setEve_local(null);
+		
+		CategoriaDAOImpl catDao = new CategoriaDAOImpl();			
+		Categoria catTemp = catDao.findById(categoria_id);
+		evento.setEve_categoria(catTemp);
+		
+		LocalDAOImpl locDao = new LocalDAOImpl();
+		Local locTemp = locDao.findById(1);			
+		evento.setEve_local(locTemp);
+		
 		evento.setEve_status(null);
 		evento.setEve_taxa((float) 0.0);
 		

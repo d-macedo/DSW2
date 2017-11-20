@@ -59,7 +59,7 @@ public class EventoDAOImpl implements EventoDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Evento> findAll(){
-		Query query = manager.createQuery("SELECT * FROM Evento");
+		Query query = manager.createQuery("SELECT e FROM Evento e");
 		try {
 			List<Evento> eventos = query.getResultList();
 			return eventos;
