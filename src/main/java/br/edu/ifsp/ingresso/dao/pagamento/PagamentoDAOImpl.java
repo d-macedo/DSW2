@@ -97,7 +97,7 @@ public class PagamentoDAOImpl implements PagamentoDAO{
 				mudarPagamentoParaCancelado(pagamento);
 				
 				TurtleMail mail = new TurtleMail(pagamento.getPag_reserva().getRes_comprador().getUsu_email());
-				mail.enviaEmail("EVENTOS AGUARDANDO APROVACAO", "Ola filha da puta, \n acessa essa merda \n www.xvideos.com.br");
+				mail.enviaEmailAguardandoAprovacao();
 				
 			}
 			else if(pagamento.getPag_status().getPst_cod() == 2) {
@@ -106,14 +106,11 @@ public class PagamentoDAOImpl implements PagamentoDAO{
 			}
 			else if(pagamento.getPag_status().getPst_cod() == 3) {
 				System.out.println("REALIZADO");
-				TurtleMail mail = new TurtleMail("user 3");
 				
 				TurtleMail mail1 = new TurtleMail(pagamento.getPag_reserva().getRes_comprador().getUsu_email());
-				mail1.enviaEmail("EVENTOS REALIZADO", "Ola filha da puta, \n acessa essa merda \n www.pudim.com.br");
+				mail1.enviaEmailPagamentoRealizado();
 				
 			}
 		}
-		
-		
 	}
 }

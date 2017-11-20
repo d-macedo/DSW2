@@ -37,10 +37,34 @@ public class TurtleMail {
 			}
 		});
 	}
-	
-	public boolean enviaEmail(String assunto, String texto) {    
-
+		
+	public boolean enviaEmailAguardandoAprovacao() {    		
 	      try {
+	    	  
+	    	 String assunto = "Evento no qual vc estava aguardando aprovação foi cancelado";
+	    	 String texto = "Evento Cancelado!!! \n Por favor acesse o link abaixo para ver mais detalhes: \n localhost:8080/ingresso/";
+	         MimeMessage message = new MimeMessage(this.session);
+	         
+	         message.setFrom(new InternetAddress(this.from));
+	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.to));
+	         message.setSubject(assunto);
+	         message.setText(texto);
+
+	         Transport.send(message);
+	         
+	         return true;
+	      } catch (MessagingException mex) {
+	         mex.printStackTrace();
+	         
+	         return false;
+	      }
+	   }
+	
+	public boolean enviaEmailPagamentoRealizado() {    
+	      try {
+	    	  
+	    	 String assunto = "Evento no qual vc realizou pagamento foi cancelado";
+	    	 String texto = "Evento Cancelado!!! \n Por favor acesse o link abaixo para ver mais detalhes: \n localhost:8080/ingresso/login";
 	         MimeMessage message = new MimeMessage(this.session);
 	         
 	         message.setFrom(new InternetAddress(this.from));
