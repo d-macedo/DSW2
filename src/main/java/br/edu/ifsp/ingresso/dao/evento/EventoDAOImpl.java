@@ -86,6 +86,20 @@ public class EventoDAOImpl implements EventoDAO {
 		update(evento);
 	}
 	
+	public void aprovarEvento(Evento evento) {
+		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = 3");
+		EventoStatus status = (EventoStatus) query.getSingleResult();
+		evento.setEve_status(status);
+		update(evento);
+	}
+	
+	public void reprovarEvento(Evento evento) {
+		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = 2");
+		EventoStatus status = (EventoStatus) query.getSingleResult();
+		evento.setEve_status(status);
+		update(evento);
+	}
+	
 	public void reembolsarEvento(Evento entity) {
 		daoPagamento.reembolsarPagamentos(entity.getEve_cod());
 		cancelarEvento(entity);
