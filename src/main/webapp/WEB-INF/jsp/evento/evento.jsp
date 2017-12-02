@@ -152,52 +152,98 @@
 		
 			<div class="col-md-12 titulo">
 				
-				<c:if test="${empty sessao or not sessao.logado}">
-					<font>Faça login para mais informações.</font>
-				</c:if>
+					<c:if test="${empty sessao or not sessao.logado}">
+						<font>Faça login para mais informações.</font>
+					</c:if>
 				
-				<c:if test="${sessao.logado}">
-					<c:if test="${(evento.eve_status.est_cod == 1) and (sessao.tipoUsuario == 'G')}">
-						<button type="submit" class="btn btn-success">Aprovar Evento</button>
-						<button type="submit" class="btn btn-danger">Não Aprovar Evento</button>
+					<c:if test="${sessao.logado}">
+						
+						<form id="formSituacaoEvento" method="post" action="<c:url value="/evento/altera/situacao" />">
+							<input type="hidden" value="${evento.eve_cod}" name="evento.eve_cod">
+						
+							<c:if test="${(evento.eve_status.est_cod == 1) and (sessao.tipoUsuario == 'G')}">
+								<button type="button" class="btn btn-success aprovaEvento">Aprovar Evento</button>
+								<button type="button" class="btn btn-danger cancelaEvento">Não Aprovar Evento</button>
+								
+								<input id="decisao" type="hidden" value="" name="decisao">
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 1) and (sessao.tipoUsuario != 'G')}">
+								<font>Evento aguardando aprovação.</font>
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 2) and (sessao.tipoUsuario == 'G')}">
+								<button type="button" class="btn btn-success aprovaEvento">Aprovar Evento</button>
+								
+								<input id="decisao" type="hidden" value="" name="decisao">
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 2) and (sessao.tipoUsuario != 'G')}">
+								<font>Evento não aprovado pela gerência.</font>
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'G')}">
+								<button type="button" class="btn btn-danger cancelaEvento">Não Aprovar Evento</button>
+								<input id="decisao" type="hidden" value="" name="decisao">
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id == evento.eve_executor)}">
+								<button type="button" class="btn btn-danger cancelaEvento">Cancelar Evento</button>
+								<input id="decisao" type="hidden" value="" name="decisao">
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id != evento.eve_executor)}">
+								<font>Você não é o executor deste evento.</font>
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 4)}">
+								<font>Evento Cancelado</font>
+							</c:if>
+							
+							<c:if test="${(evento.eve_status.est_cod == 5)}">
+								<font>Evento Finalizado</font>
+							</c:if>
+						</form>
+						
+						
+							<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'C')}">
+								<c:forEach var="error" items="${errors}">
+									<div class="erro">${error.message}</div>
+								</c:forEach>
+								<div id="compraIngresso">
+									<form method="post" action="<c:url value="/evento/${evento.eve_cod}/comprar" />">
+										<h3>Comprar ingresso</h3>
+									
+										<div class="row">
+											<div class="col-md-4">
+												<h4>Quantidade de ingressos</h4>
+												<input id="qtdIngresso" type="number" name="qtdIngresso" value="0">
+											</div>
+											
+											<div class="col-md-4">
+												<h4>Quantidade de ingressos meia entrada</h4>
+												<input id="qtdIngressoMeia" type="number" name="qtdIngressoMeia" value="0">
+											</div>
+											
+											<div class="col-md-4"></div>
+										</div>
+	
+										<div class="row">								
+											<div class="col-md-12">
+												<h3>Valor Total:</h3>
+												<span id="valorTotal">R$ 0</span>
+											</div>
+											<div class="col-md-12">
+												<br>
+												<button type="submit" class="btn btn-primary">Confirmar compra de ingresso</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</c:if>
+						
 					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 1) and (sessao.tipoUsuario != 'G')}">
-						<font>Evento aguardando aprovação.</font>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 2) and (sessao.tipoUsuario == 'G')}">
-						<button type="submit" class="btn btn-success">Aprovar Evento</button>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 2) and (sessao.tipoUsuario != 'G')}">
-						<font>Evento não aprovado pela gerência.</font>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'G')}">
-						<button type="submit" class="btn btn-danger">Não Aprovar Evento</button>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id == evento.eve_executor)}">
-						<button type="submit" class="btn btn-danger">Cancelar Evento</button>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id != evento.eve_executor)}">
-						<font>Você não é o executor deste evento.</font>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'C')}">
-						<button type="submit" class="btn btn-primary">Comprar Ingresso</button>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 4)}">
-						<font>Evento Cancelado</font>
-					</c:if>
-					
-					<c:if test="${(evento.eve_status.est_cod == 5)}">
-						<font>Evento Finalizado</font>
-					</c:if>
-				</c:if>
 				
 			</div>
 			
@@ -222,5 +268,58 @@
 			</div>
 		</div>
 	</footer>
+	
+	<script>
+		$( document ).ready(function() {
+			var valorInteira = ${evento.eve_valor_inteira};
+			var valorMeia = ${evento.eve_valor_meia};
+			
+			$("#qtdIngresso").val(0);
+			$("#qtdIngressoMeia").val(0);
+			
+			$("#qtdIngresso").change(function(){
+				$("#valorTotal").text("");
+				var total = ($("#qtdIngresso").val() * valorInteira) + ($("#qtdIngressoMeia").val() * valorMeia);
+				$("#valorTotal").text("R$ " + total);
+			});
+			
+			$("#qtdIngresso").keyup(function(){
+				$("#valorTotal").text("");
+				var total = ($("#qtdIngresso").val() * valorInteira) + ($("#qtdIngressoMeia").val() * valorMeia);
+				$("#valorTotal").text("R$ " + total);
+			});
+			
+			$("#qtdIngressoMeia").change(function(){
+				$("#valorTotal").text("");
+				var total = ($("#qtdIngresso").val() * valorInteira) + ($("#qtdIngressoMeia").val() * valorMeia);
+				$("#valorTotal").text("R$ " + total);
+			});
+			
+			$("#qtdIngressoMeia").keyup(function(){
+				$("#valorTotal").text("");
+				var total = ($("#qtdIngresso").val() * valorInteira) + ($("#qtdIngressoMeia").val() * valorMeia);
+				$("#valorTotal").text("R$ " + total);
+			});
+		
+		    $(".aprovaEvento").click(function(){
+		    		var confirmacao = confirm("Deseja realmente aprovar o evento?");
+		    		
+		    		if(confirmacao){
+		    			$("#decisao").val("A");
+		    			$("#formSituacaoEvento").submit();
+		    		}
+		    		
+	    		});
+			
+		    $(".cancelaEvento").click(function(){
+		    		var confirmacao = confirm("Deseja realmente reprovar o evento?");
+		    		
+		    		if(confirmacao){
+		    			$("#decisao").val("C");
+		    			$("#formSituacaoEvento").submit();
+		    		}	
+		    });
+		});
+	</script>
 </body>
 </html>
