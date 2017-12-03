@@ -1,5 +1,6 @@
 package br.edu.ifsp.ingresso.Util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,5 +27,15 @@ public class LocalDateConverter implements Converter<Date> {
 		}
 		return null;
 
+	}
+	
+	public String convertToString(Date date) throws ParseException {
+		if (date == null) {
+			return null;
+		}
+		
+		DateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+		String result = format.format(date);
+		return result;
 	}
 }

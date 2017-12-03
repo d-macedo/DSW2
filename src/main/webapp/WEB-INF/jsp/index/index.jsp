@@ -20,10 +20,15 @@
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
 <script src="<c:url value='/resource/js/jquery-3.2.1.min.js' />"></script>
-<script src="<c:url value='/resource/js/bootstrap.min.js' />"></script>	
-
+<script src="<c:url value='/resource/js/bootstrap.min.js' />"></script>
+<script src="<c:url value='/resource/js/jquery.mask.min.js' />"></script>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#dataPesquisa').mask('99/99/9999');
+	});
+</script>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><img src="<c:url value='/resource/img/turtle-logo-transp-teste.png' />" height="56px"></a>
@@ -68,22 +73,30 @@
 	<div class="container">
 	
 		<div class="row pesquisarIndex">
-			<form method="get" action="">
+			<form method="post" action="<c:url value="/" />">
 				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar eventos" name="nomeEvento">
+					<input type="text" placeholder="Pesquisar eventos" name="evento">
+				</div>
+				<div class="col-md-3"> 	
+					<select name="cidade">
+						<option value="0">Pesquisar por cidade</option>
+						<c:forEach items="${cidades}" var="cidade">
+							<option value="${cidade.cid_cod}">${cidade.cid_nome} - ${cidade.cid_estado.est_sigla}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por cidade" name="nomeCidade">
+					<input type="text" id="dataPesquisa" name="data" placeholder="Pesquise por Data">
 				</div>
 				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por data" name="dataEvento">
-				</div>
-				<div class="col-md-3">
-					<button>Pesquisar</button>
+					<button type="submit">Pesquisar</button>
 				</div>
 			</form>
 		</div>
 		
+		
+		
+		<c:if test="${empty eventos}">
 		<div class="row eventoIndex">
 			<div class="col-md-12 titulo">
 				<h2>Vai dar bom!</h2>
@@ -100,6 +113,26 @@
 				<img src="<c:url value='/resource/img/turtle-logo-transp-teste.png' />">
 			</div>
 		</div>
+		</c:if>
+		
+		<c:if test="${not empty eventos}">
+		<c:forEach items="${eventos}" var="evento">
+		<div class="row eventoIndex">
+			<div class="col-md-12 titulo">
+				<h2>${evento.eve_titulo}</h2>
+				<p>${evento.eve_data}</p>
+			</div>
+			
+			<div class="col-md-5 descricao">
+				<p>${evento.eve_descricao}</p>
+				<div>
+					<a href="<c:url value="/evento/${evento.eve_cod}"/>" class="link">Visualizar evento...</a>
+				</div>			
+			</div>
+		</div>	
+		</c:forEach>
+		</c:if>
+		
 	</div>
 	
 	<footer class="rodape">

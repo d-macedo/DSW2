@@ -39,6 +39,14 @@ body{
 	border: 1px solid #e1e4e8;
 }
 
+.pesquisarIndex select{
+	width: 100%;
+	height: 40px;
+	padding: 5px;
+	border-radius: 0px;
+	border: 1px solid #e1e4e8;
+}
+
 .pesquisarIndex div{
 	padding: 0 0 0 0;
 }

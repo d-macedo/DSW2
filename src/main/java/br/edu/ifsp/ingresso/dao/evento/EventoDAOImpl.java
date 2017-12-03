@@ -1,6 +1,8 @@
 package br.edu.ifsp.ingresso.dao.evento;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -117,6 +119,39 @@ public class EventoDAOImpl implements EventoDAO {
 		cancelarEvento(entity);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Evento> pesquisarEventosIndex(String evento, Integer cidade, Date data) throws ParseException{
+		
+		String queryStatement = "SELECT u FROM Evento u, Local l WHERE u.eve_local = l.loc_cod AND u.eve_status = 3 ";
+			
+		if (evento != null) {
+			queryStatement += "AND u.eve_titulo LIKE :evento ";
+		}
+		if (cidade != null && cidade != 0) {
+			queryStatement += "AND l.loc_cidade.cid_cod = :cidade ";
+		}
+		if (data != null) {
+			queryStatement += "AND date(eve_data) = str_to_date(:data, '%d/%m/%Y')";
+		}
+		
+		Query query = manager.createQuery(queryStatement);
+		
+		if (evento != null) {
+			query.setParameter("evento", "%"+evento+"%");
+		}
+		if (cidade != null && cidade != 0) {
+			query.setParameter("cidade", cidade);
+		}
+		if (data != null) {
+			br.edu.ifsp.ingresso.Util.LocalDateConverter converter = new br.edu.ifsp.ingresso.Util.LocalDateConverter();
+			String dataPesquisa = converter.convertToString(data);
+			query.setParameter("data", dataPesquisa);
+			
+		}
 	
+		List<Evento> eventos = query.getResultList();
+		
+		return eventos;
+	}
 
 }

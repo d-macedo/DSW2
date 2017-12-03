@@ -188,7 +188,7 @@
 							</c:if>
 							
 							<c:if test="${(evento.eve_status.est_cod == 3) and (sessao.tipoUsuario == 'E') and (sessao.id == evento.eve_executor)}">
-								<button type="button" class="btn btn-danger cancelaEvento">Cancelar Evento</button>
+								<button type="button" class="btn btn-danger cancelaEventoExecutor">Cancelar Evento</button>
 								<input id="decisao" type="hidden" value="" name="decisao">
 							</c:if>
 							
@@ -312,13 +312,22 @@
 	    		});
 			
 		    $(".cancelaEvento").click(function(){
-		    		var confirmacao = confirm("Deseja realmente reprovar o evento?");
+		    		var confirmacao = confirm("Deseja realmente não aprovar o evento?");
 		    		
 		    		if(confirmacao){
 		    			$("#decisao").val("C");
 		    			$("#formSituacaoEvento").submit();
 		    		}	
 		    });
+		    
+		    $(".cancelaEventoExecutor").click(function(){
+	    		var confirmacao = confirm("Deseja realmente cancelar o evento?");
+	    		
+	    		if(confirmacao){
+	    			$("#decisao").val("CE");
+	    			$("#formSituacaoEvento").submit();
+	    		}	
+	    	});
 		});
 	</script>
 </body>

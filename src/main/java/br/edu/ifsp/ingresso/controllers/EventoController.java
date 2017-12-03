@@ -175,9 +175,12 @@ public class EventoController {
 		}else if(decisao.equals("C")){
 			System.out.println("Evento para reprovacao");
 			dao.reprovarEvento(evento);
+			
+		}else if(decisao.equals("CE")){
+			dao.reembolsarEvento(evento);
 		}
 		
-		result.redirectTo(EventoController.class).pendentesAprovacao();
+		result.redirectTo(EventoController.class).evento(evento.getEve_cod());
 	}
 	
 	@Post
