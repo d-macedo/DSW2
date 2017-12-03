@@ -156,11 +156,21 @@ public class Evento {
 	}
 	
 	public void setEve_valor_inteira(Double eve_valor_inteira) {
-		this.eve_valor_inteira = eve_valor_inteira;
+		if(eve_valor_inteira == null) {
+			this.eve_valor_inteira = 0;
+		}
+		else {
+			this.eve_valor_inteira = eve_valor_inteira;
+		}		
 	}
 	
 	public void setEve_valor_meia(Double eve_valor_meia) {
-		this.eve_valor_meia = eve_valor_meia;
+		if (eve_valor_meia == null) {
+			this.eve_valor_meia = 0;
+		}
+		else {
+			this.eve_valor_meia = eve_valor_meia;
+		}		
 	}
 
 	public Float getEve_taxa() {

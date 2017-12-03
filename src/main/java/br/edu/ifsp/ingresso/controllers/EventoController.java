@@ -16,12 +16,15 @@ import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.ifsp.ingresso.categoria.CategoriaDAOImpl;
 import br.edu.ifsp.ingresso.component.UsuarioSession;
+import br.edu.ifsp.ingresso.dao.cidade.CidadeDAOImpl;
 import br.edu.ifsp.ingresso.dao.evento.EventoDAOImpl;
 import br.edu.ifsp.ingresso.dao.local.LocalDAOImpl;
 import br.edu.ifsp.ingresso.dao.reserva.ReservaDAOImpl;
 import br.edu.ifsp.ingresso.dao.usuario.UsuarioDAOImpl;
 import br.edu.ifsp.ingresso.models.Categoria;
+import br.edu.ifsp.ingresso.models.Cidade;
 import br.edu.ifsp.ingresso.models.Evento;
+import br.edu.ifsp.ingresso.models.EventoStatus;
 import br.edu.ifsp.ingresso.models.Local;
 import br.edu.ifsp.ingresso.models.Reserva;
 import br.edu.ifsp.ingresso.models.Usuario;
@@ -46,18 +49,26 @@ public class EventoController {
 	@Get
 	@Path("/cadastrar/evento")
 	public void cadastroEvento() {
-		CategoriaDAOImpl catDao = new CategoriaDAOImpl();
 		
-		List<Categoria> minhalista = catDao.findAll();
+		CategoriaDAOImpl catDAO = new CategoriaDAOImpl();
+		List<Categoria> catLista = catDAO.findAll();
+		result.include("categorias",catLista);
 		
-		result.include("categorias",minhalista);
+		CidadeDAOImpl cidDAO = new CidadeDAOImpl();
+		List<Cidade> cidLista = cidDAO.findAll();
+		result.include("cidades",cidLista);
+		
+		LocalDAOImpl locDAO = new LocalDAOImpl();
+		List<Local> locLista = locDAO.findAll();
+		result.include("locais",locLista);
 	}
 
 	@Post
 	@Path("/cadastrar/evento")
-	public void cadastrar(Evento evento, Integer categoria_id) {
+	public void cadastrar(Evento evento, Integer local_id,Local local, Integer cidade_id, Integer categoria_id) {
+		
 		evento.setEve_executor((int) usuarioSession.getId());
-		System.out.println(evento.getEve_data());
+		
 		if (evento.getEve_titulo() == null) {
 			validator.add(new SimpleMessage("tituloEvento", "Favor adicionar um título."));
 		}
@@ -67,30 +78,60 @@ public class EventoController {
 		if (evento.getEve_data() == null) {
 			validator.add(new SimpleMessage("dataEvento", "Favor adicionar uma data."));
 		}
-		if (evento.getEve_max_inteira() == null) {
+		if (evento.getEve_max_inteira() == 0) {
 			validator.add(new SimpleMessage("maxIntEvento", "Favor adicionar um máximo de entradas do tipo inteira."));
 		}
-		if (evento.getEve_max_meia() == null) {
-			validator.add(new SimpleMessage("maxMeiaEvento", "Favor adicionar um máximo entradas do tipo meia."));
+		if (evento.getEve_valor_inteira() == 0) {
+			validator.add(new SimpleMessage("valIntEvento", "Favor informar o valor de entradas do tipo inteira."));
+		}
+		if ((evento.getEve_valor_meia() == 0) && (evento.getEve_max_meia() != 0)) {
+			validator.add(new SimpleMessage("valMeiaEvento", "Favor informar o valor de entradas do tipo meia."));
+		}
+		if (local_id == 0) {			
+			if(local.getLoc_nome() == null && local.getLoc_endereco() == null && cidade_id == 0) {
+				validator.add(new SimpleMessage("localEvento", "Favor informar o local do evento."));
+			}
+			
+			else if(local.getLoc_nome() == null || local.getLoc_endereco() == null || cidade_id == 0) {
+				validator.add(new SimpleMessage("localEvento", "Favor completar o cadastro do local."));
+			}
+		}
+		if (categoria_id == 0) {
+			validator.add(new SimpleMessage("categoriaEvento", "Favor informar a categoria do evento."));
 		}
 
-		validator.onErrorUsePageOf(EventoController.class).cadastroEvento();
+		validator.onErrorForwardTo(EventoController.class).cadastroEvento();
+		
 		Date date = new Date();
 		evento.setEve_data_ics(date);
+		
+		LocalDAOImpl locDao = new LocalDAOImpl();
+		if (local_id != 0) {			
+			Local locTemp = locDao.findById(local_id);			
+			evento.setEve_local(locTemp);
+		}
+		else {
+			CidadeDAOImpl cidDao = new CidadeDAOImpl();
+			Cidade cidTemp = cidDao.findById(cidade_id);
+			
+			local.setLoc_cidade(cidTemp);
+			
+			locDao.persist(local);
+			
+			evento.setEve_local(local);			
+		}
 		
 		CategoriaDAOImpl catDao = new CategoriaDAOImpl();			
 		Categoria catTemp = catDao.findById(categoria_id);
 		evento.setEve_categoria(catTemp);
+		evento.setEve_taxa(catTemp.getCat_taxa());		
 		
-		LocalDAOImpl locDao = new LocalDAOImpl();
-		Local locTemp = locDao.findById(1);			
-		evento.setEve_local(locTemp);
-		
-		evento.setEve_status(null);
-		evento.setEve_taxa((float) 0.0);
+		EventoStatus staTemp = dao.statusById(1);
+		evento.setEve_status(staTemp);
 		
 		dao.persist(evento);
-		result.redirectTo(EventoController.class).cadastroEvento();
+		
+		result.redirectTo(EventoController.class).evento(evento.getEve_cod());
 	}
 	
 	@Get("/evento/{evento_id}")

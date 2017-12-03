@@ -137,47 +137,87 @@
 						<div class="form-group col-md-6">
 							<label for="maxIntEvento">Máximo de Ingressos do tipo
 								Inteiro do Evento</label> <input type="number" class="form-control"
-								id="maxIntEvento" name="evento.eve_max_inteira" min=0>
+								id="maxIntEvento" name="evento.eve_max_inteira" value="0">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="maxMeiaEvento">Máximo de Ingressos do tipo
 								Meia do Evento</label> <input type="number" class="form-control"
-								id="maxMeiaEvento" name="evento.eve_max_meia" min=0>
+								id="maxMeiaEvento" name="evento.eve_max_meia" value="0">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="maxIntEvento">Valor de Ingressos do tipo
+							<label for="valorIntEvento">Valor de Ingressos do tipo
 								Inteiro do Evento</label> <input type="number" class="form-control"
-								id="valorIntEvento" name="evento.eve_valor_inteira" min=0>
+								id="valorIntEvento" name="evento.eve_valor_inteira" value="0">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="maxMeiaEvento">Valor de Ingressos do tipo
+							<label for="valorMeiaEvento">Valor de Ingressos do tipo
 								Meia do Evento</label> <input type="number" class="form-control"
-								id="valorMeiaEvento" name="evento.eve_valor_meia" min=0>
+								id="valorMeiaEvento" name="evento.eve_valor_meia" value="0">
 						</div>
-						<!-- 
-				<div class="form-group col-md-12">
-					<label for="taxaEvento">Taxa do Evento</label> 
-					<input type="number" class="form-control" id="taxaEvento" name="evento.eve_taxa">
-				</div>
-				 -->
 						<div class="form-group col-md-12">
-							<label for="cidadeEvento">Cidade do Evento</label> <select
-								class="form-control" id="cidadeEvento" name="evento.eve_local">
-								<option value="1">Campinas</option>
+							<label for="localEvento">Local do Evento</label>
+							<select
+								class="form-control" id="localEvento" name="local_id">
+								<option value="0"> - Selecione - </option>
+								<c:forEach items="${locais}" var="loc">
+									<option
+									  value="${loc.loc_cod}">${loc.loc_nome} (${loc.loc_endereco} - ${loc.loc_cidade.cid_nome},${loc.loc_cidade.cid_estado.est_sigla})
+									</option>
+								</c:forEach>
 							</select>
-						</div>
-						<!-- 
-				<div class="form-group col-md-6">
-					<label for="estadoEvento">Estado do Evento</label> 
-					<select class="form-control" id="estadoEvento" name="estadoEvento">
-						<option value="1">São Paulo</option>
-					</select>
-				</div>
-				-->
+							
+							<a href="" id="linkLocal" data-toggle="modal" data-target="#myModal">Cadastrar Novo Local</a>
+							
+							<!-- Modal -->
+							  <div class="modal fade" id="myModal" role="dialog">
+							    <div class="modal-dialog">
+							    
+							      <!-- Modal content-->
+							      <div class="modal-content">
+							        <div class="modal-header">
+							          <button type="button" class="close" data-dismiss="modal">&times;</button>
+							          <h4 class="modal-title">Novo Local</h4>
+							        </div>
+							        <div>
+							          <div class="form-group col-md-12">
+										 <label for="nomeLocal">Nome</label>
+										 <input
+											type="text" class="form-control" id="nomeLocal"
+											name="local.loc_nome" placeholder="Digite o nome do Local">
+									  </div>
+									  <div class="form-group col-md-12">
+										 <label for="enderecoLocal">Endereço</label>
+										 <input
+											type="text" class="form-control" id="enderecoLocal"
+											name="local.loc_endereco" placeholder="Digite o endereço do Local">
+									  </div>
+									  <div class="form-group col-md-12">
+										 <label for="cidadeLocal">Cidade</label>
+										 <select
+											class="form-control" id="cidadeLocal" name="cidade_id">
+											<option value="0"> - Selecione - </option>
+											<c:forEach items="${cidades}" var="cid">
+												<option value="${cid.cid_cod}">${cid.cid_nome} - ${cid.cid_estado.est_sigla}</option>
+											</c:forEach>
+										 </select>
+									  </div>
+							        </div>
+							        <div class="modal-footer">
+							          <button id="endNovoLocal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        </div>
+							      </div>
+							      
+							   </div>
+							 </div>
+							<!-- Fim Modal -->
+							
+						</div>	
 						<div class="form-group col-md-12">
-							<label for="categoriaEvento">Categoria do Evento</label> <select
+							<label for="categoriaEvento">Categoria do Evento</label>
+							<select
 								class="form-control" id="categoriaEvento"
 								name="categoria_id">
+								<option value="0"> - Selecione - </option>
 								<c:forEach items="${categorias}" var="cat">
 									<option value="${cat.cat_cod}">${cat.cat_descricao}</option>
 								</c:forEach>
@@ -220,5 +260,16 @@
 			</div>
 		</div>
 	</footer>
+	
+	<script>
+		$("#endNovoLocal").click(function(){
+			$('#localEvento').append($('<option>', {
+			    value: 0,
+			    text: $("#nomeLocal").val(),
+			    selected: true
+			}));
+		});
+	</script>
+	
 </body>
 </html>

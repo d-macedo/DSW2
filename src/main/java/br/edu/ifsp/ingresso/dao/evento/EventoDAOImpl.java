@@ -79,6 +79,12 @@ public class EventoDAOImpl implements EventoDAO {
 		}
 	}
 	
+	public EventoStatus statusById(int id) {
+		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = "+id);
+		EventoStatus status = (EventoStatus) query.getSingleResult();
+		return status;
+	}
+	
 	public void cancelarEvento(Evento evento) {
 		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = 4");
 		EventoStatus status = (EventoStatus) query.getSingleResult();
@@ -96,6 +102,12 @@ public class EventoDAOImpl implements EventoDAO {
 	public void reprovarEvento(Evento evento) {
 		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = 2");
 		EventoStatus status = (EventoStatus) query.getSingleResult();
+		evento.setEve_status(status);
+		update(evento);
+	}
+	
+	public void finalizarEvento(Evento evento) {
+		EventoStatus status = statusById(5);
 		evento.setEve_status(status);
 		update(evento);
 	}
