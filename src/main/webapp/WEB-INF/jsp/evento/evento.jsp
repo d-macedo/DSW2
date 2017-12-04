@@ -43,16 +43,17 @@
 
 					<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
-						<li><a href="../cadastrar/usuario">Cadastrar Usuário</a></li>
-						<li><a href="pendentes">Aguardando Aprovação (${numeroPendentes})</a></li>
-						<li><a href="">Balanço Geral</a></li>
-						<li><a href="<c:url value="/logout"/>">Logout</a></li>
+						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
+						<li><a href="<c:url value="#" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
+						<li><a href="../evento/balanco">Balanço Geral</a></li>
+			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
+					
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
-						<li><a href="../cadastrar/evento">Cadastrar Evento</a></li>
-						<li><a href="">Meus Eventos</a></li>
-						<li><a href="<c:url value="/logout"/>">Logout</a></li>
+						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar Evento</a></li> 
+						<li><a href="<c:url value="/evento/meuseventos" />">Meus Eventos</a></li> 
+					<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 					<!-- COMPRADOR -->
 					<c:if test="${sessao.tipoUsuario == 'C'}">
@@ -73,29 +74,8 @@
 		</div>
 	</nav>
 
+
 	<div class="container">
-
-		<div class="row pesquisarIndex">
-			<form>
-				
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar eventos"
-						name="nomeEvento">
-				</div>
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por cidade"
-						name="nomeCidade">
-				</div>
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por data"
-						name="dataEvento">
-				</div>
-				<div class="col-md-3">
-					<button>Pesquisar</button>
-				</div>
-			</form>
-		</div>
-
 		<div class="row eventoIndex">
 			
 			<div class="col-md-12 tituloEvento">

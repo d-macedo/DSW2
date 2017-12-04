@@ -1,5 +1,6 @@
 package br.edu.ifsp.ingresso.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -80,9 +82,31 @@ public class Evento {
 
 	@Column(name = "EVE_IMG_PATH")
 	private String eve_img_path;
+	
+	@Transient
+	private BigDecimal total_inteiras;
+	
+	@Transient
+	private BigDecimal total_meia;
 
 	public Evento() {
 
+	}
+
+	public BigDecimal getTotal_inteiras() {
+		return total_inteiras;
+	}
+
+	public void setTotal_inteiras(BigDecimal total_inteiras) {
+		this.total_inteiras = total_inteiras;
+	}
+
+	public BigDecimal getTotal_meia() {
+		return total_meia;
+	}
+
+	public void setTotal_meia(BigDecimal total_meia) {
+		this.total_meia = total_meia;
 	}
 
 	public Evento(String eve_titulo, String eve_descricao, Date eve_data, Integer eve_max_inteira, Integer eve_max_meia,

@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Turtle Tickets - Pendentes Aprovação</title>
+<title>Turtle Tickets - Balanço Geral</title>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resource/css/bootstrap.min.css'/>">
@@ -44,15 +44,15 @@
 						<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
 						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
-						<li><a href="<c:url value="#" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
-						<li><a href="../evento/balanco">Balanço Geral</a></li>
+						<li><a href="<c:url value="/evento/pendentes" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
+						<li><a href="">Balanço Geral</a></li>
 			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 					
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
 						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar Evento</a></li> 
-						<li><a href="<c:url value="/evento/meuseventos" />">Meus Eventos</a></li> 
+						<li><a href="<c:url value="#" />">Meus Eventos</a></li> 
 					<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 
@@ -74,9 +74,9 @@
 			</ul>
 		</div>
 	</nav>
-	
-		<div class="container">
-		<c:if test="${empty sessao or not sessao.logado}">
+
+		
+			<c:if test="${empty sessao or not sessao.logado}">
 			<div class="row eventoIndex">
 				<div class="col-md-12 titulo">
 					<p>Você não tem permissão para acessar esta página.</p>
@@ -94,22 +94,57 @@
 			</c:if>
 		</c:if>
 		
+		<div class="container">
+		
 		<c:if test="${sessao.logado}">
 			<c:if test="${sessao.tipoUsuario == 'G'}">
-				<c:forEach items="${pendentes}" var="evento">
+				<div class="row eventoIndex">
+					<div class="col-md-12 tituloEvento">
+						<font>Balanço Geral</font>
+					</div>
+				</div>
+				<c:forEach items="${balancos}" var="evento">
 					<a href="../evento/${evento.eve_cod}">
 						<div class="row eventoIndex">
 			
 								<div class="col-md-12 tituloEvento">
 									<font>${evento.eve_titulo}</font>
 								</div>
-								<div class="col-md-6 descricao">
-									<p>${evento.eve_data}</p>
+								
+								<div class="col-md-12 titulo">
+									<font>Ingressos Inteira</font>
 								</div>
-								<div class="col-md-12 descricao">
-									<p>${evento.eve_descricao}</p>
+								<div class="col-md-6 descricao">
+									<p>${evento.eve_max_inteira}</p>
 								</div>
 								
+								<div class="col-md-12 titulo">
+									<font>Ingressos Meia</font>
+								</div>
+								<div class="col-md-12 descricao">
+									<p>${evento.eve_max_meia}</p>
+								</div>
+								
+								<div class="col-md-12 titulo">
+									<font>Ingressos Inteira Vendidos</font>
+								</div>
+								<div class="col-md-6 descricao">
+									<p>${evento.total_inteiras}</p>
+								</div>
+								
+								<div class="col-md-12 titulo">
+									<font>Ingressos Meia Vendidos</font>
+								</div>
+								<div class="col-md-6 descricao">
+									<p>${evento.total_meia}</p>
+								</div>
+								
+								<div class="col-md-12 titulo">
+									<font>Porcentagem Vendida</font>
+								</div>
+								<div class="col-md-6 descricao">
+									<p>${((evento.total_inteiras + evento.total_meia) / (evento.eve_max_inteira + evento.eve_max_meia))}</p>
+								</div>
 						</div>
 					</a>
 				</c:forEach>

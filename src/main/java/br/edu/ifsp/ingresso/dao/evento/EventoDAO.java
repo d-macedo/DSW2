@@ -13,5 +13,6 @@ public interface EventoDAO {
     public List<Evento> findPendentes();
     public List<Evento> findByExecutor(long id);
     public List<Evento> findAll(); 
+    public List<Evento> balancoGeral();
 
 }

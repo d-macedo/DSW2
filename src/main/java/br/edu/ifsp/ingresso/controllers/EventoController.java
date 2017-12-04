@@ -151,6 +151,15 @@ public class EventoController {
 		}	
 	}
 	
+	@Get("/evento/balanco")
+	public void balanco() {
+		ArrayList<Evento> balanco = dao.balancoGeral();
+		ArrayList<Evento> pendentes = dao.findPendentes();
+		
+		result.include("balancos", balanco);
+		result.include("numeroPendentes", pendentes.size());
+	}
+	
 	@Get("/evento/pendentes")
 	public void pendentesAprovacao() {
 		ArrayList<Evento> pendentes = dao.findPendentes();

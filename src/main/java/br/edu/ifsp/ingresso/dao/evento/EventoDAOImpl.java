@@ -1,5 +1,6 @@
 package br.edu.ifsp.ingresso.dao.evento;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -163,6 +164,36 @@ public class EventoDAOImpl implements EventoDAO {
 		List<Evento> eventos = query.getResultList();
 		
 		return eventos;
+	}
+	
+	@Override
+	public ArrayList<Evento> balancoGeral(){
+		Query query = manager.createNativeQuery("SELECT eve_cod, eve_titulo, eve_max_inteira, eve_max_meia, sum(res_qtd_inteira) as TOTAL_INTEIRAS, sum(res_qtd_meia) as TOTAL_MEIAS FROM Evento e INNER JOIN reserva r ON r.res_evento = e.eve_cod WHERE res_status = 2 GROUP BY eve_titulo, EVE_MAX_INTEIRA, eve_max_meia");
+		
+		try {
+			ArrayList<Evento> eventos = new ArrayList<Evento>();
+			
+			ArrayList<Object> eventosSQL = (ArrayList<Object>) query.getResultList();
+			for(Object eventoSQL: eventosSQL) {
+				Object[] object = (Object[]) eventoSQL;
+
+				Evento novoEvento = new Evento();
+				novoEvento.setEve_cod(new Long((Integer) object[0]));
+				novoEvento.setEve_titulo((String) object[1]);
+				novoEvento.setEve_max_inteira((Integer) object[2]);
+				novoEvento.setEve_max_meia((Integer) object[3]);
+				novoEvento.setTotal_inteiras((BigDecimal) object[4]);
+				novoEvento.setTotal_meia((BigDecimal) object[5]);
+				
+				eventos.add(novoEvento);
+			}
+
+			return eventos;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }

@@ -80,29 +80,9 @@
 			</ul>
 		</div>
 	</nav>
+	
+		<div class="container">
 
-	<div class="container">
-
-		<div class="row pesquisarIndex">
-			<form>
-
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar eventos"
-						name="nomeEvento">
-				</div>
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por cidade"
-						name="nomeCidade">
-				</div>
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por data"
-						name="dataEvento">
-				</div>
-				<div class="col-md-3">
-					<button>Pesquisar</button>
-				</div>
-			</form>
-		</div>
 			<c:if test="${empty sessao or not sessao.logado}">
 			<div class="row eventoIndex">
 				<div class="col-md-12 titulo">
@@ -216,7 +196,7 @@
 									  </div>
 							        </div>
 							        <div class="modal-footer">
-							          <button id="endNovoLocal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							          <button id="endNovoLocal" type="button" class="btn btn-default" data-dismiss="modal">Cadastrar</button>
 							        </div>
 							      </div>
 							      

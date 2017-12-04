@@ -41,19 +41,22 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${sessao.logado}">
 
-						<!-- GERENTE -->
+					<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
-						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
-						<li><a href="<c:url value="/evento/pendentes" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
+						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar
+								Usuário</a></li>
+						<li><a href="<c:url value="/evento/pendentes" />">Aguardando
+								Aprovação (${numeroPendentes})</a></li>
 						<li><a href="">Balanço Geral</a></li>
-			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
+						<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
-					
+
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
-						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar Evento</a></li> 
-						<li><a href="<c:url value="#" />">Meus Eventos</a></li> 
-					<li><a href="<c:url value="/logout"/>">Logout</a></li>
+						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar
+								Evento</a></li>
+						<li><a href="<c:url value="#" />">Meus Eventos</a></li>
+						<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 
 					<!-- COMPRADOR -->
@@ -76,36 +79,14 @@
 	</nav>
 
 	<div class="container">
-
-		<div class="row pesquisarIndex">
-			<form>
-
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar eventos"
-						name="nomeEvento">
-				</div>
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por cidade"
-						name="nomeCidade">
-				</div>
-				<div class="col-md-3">
-					<input type="text" placeholder="Pesquisar por data"
-						name="dataEvento">
-				</div>
-				<div class="col-md-3">
-					<button>Pesquisar</button>
-				</div>
-			</form>
-		</div>
-		
-			<c:if test="${empty sessao or not sessao.logado}">
+		<c:if test="${empty sessao or not sessao.logado}">
 			<div class="row eventoIndex">
 				<div class="col-md-12 titulo">
 					<p>Você não tem permissão para acessar esta página.</p>
 				</div>
 			</div>
 		</c:if>
-		
+
 		<c:if test="${sessao.logado}">
 			<c:if test="${sessao.tipoUsuario != 'E'}">
 				<div class="row eventoIndex">
@@ -115,31 +96,36 @@
 				</div>
 			</c:if>
 		</c:if>
-		
+
 		<c:if test="${sessao.logado}">
 			<c:if test="${sessao.tipoUsuario == 'E'}">
+				<div class="row eventoIndex">
+					<div class="col-md-12 tituloEvento">
+						<font>Meus Eventos</font>
+					</div>
+				</div>
 				<c:forEach items="${meusEventos}" var="evento">
 					<a href="../evento/${evento.eve_cod}">
 						<div class="row eventoIndex">
-			
-								<div class="col-md-12 tituloEvento">
-									<font>${evento.eve_titulo}</font>
-								</div>
-								<div class="col-md-6 descricao">
-									<p>${evento.eve_data}</p>
-								</div>
-								<div class="col-md-12 descricao">
-									<p>${evento.eve_descricao}</p>
-								</div>
-								
+
+							<div class="col-md-12 tituloEvento">
+								<font>${evento.eve_titulo}</font>
+							</div>
+							<div class="col-md-6 descricao">
+								<p>${evento.eve_data}</p>
+							</div>
+							<div class="col-md-12 descricao">
+								<p>${evento.eve_descricao}</p>
+							</div>
+
 						</div>
 					</a>
 				</c:forEach>
 			</c:if>
 		</c:if>
-		
+
 	</div>
-	
+
 	<footer class="rodape">
 		<div class="container-fluid">
 			<div class="row">

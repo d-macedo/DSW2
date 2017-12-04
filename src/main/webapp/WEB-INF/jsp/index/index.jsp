@@ -37,12 +37,12 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${sessao.logado}">
-				
+					
 					<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
 						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
 						<li><a href="<c:url value="/evento/pendentes" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
-						<li><a href="">Balanço Geral</a></li>
+						<li><a href="<c:url value="evento/balanco" />">Balanço Geral</a></li>
 			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 					
@@ -99,19 +99,16 @@
 		<c:if test="${empty eventos}">
 		<div class="row eventoIndex">
 			<div class="col-md-12 titulo">
-				<h2>Vai dar bom!</h2>
+				<h2>Turtle Tickets!</h2>
 			</div>
-			
-			<div class="col-md-5 descricao">
-				<p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-				<div>
-					<a href="" class="link">Visualizar evento...</a>
-				</div>			
-			</div>
-			
-			<div class="col-md-7 imagem">
+			<div class="col-md-2 imagem">
 				<img src="<c:url value='/resource/img/turtle-logo-transp-teste.png' />">
 			</div>
+			
+			<div class="col-md-10 descricao">
+				<p>Fundada em 5 de setembro de 2017, a Turtle Tickets é uma empresa que tem como objetivo a venda de ingressos pela internet. Nossa empresa pretende atingir tanto executores dos eventos, que terão seus eventos divulgados, quanto para os compradores, que terão um lugar seguro para a compra dos ingressos para os eventos que desejarem ir.</p>		
+			</div>
+			
 		</div>
 		</c:if>
 		
