@@ -66,7 +66,6 @@ public class EventoController {
 	@Post
 	@Path("/cadastrar/evento")
 	public void cadastrar(Evento evento, Integer local_id,Local local, Integer cidade_id, Integer categoria_id) {
-		
 		evento.setEve_executor((int) usuarioSession.getId());
 		
 		if (evento.getEve_titulo() == null) {
@@ -142,6 +141,14 @@ public class EventoController {
 		result.include("numeroPendentes", pendentes.size());
 		result.include(evento);
 		
+	}
+	
+	@Get("/evento/meuseventos")
+	public void meusEventos() {
+		if(usuarioSession.isLogado()) {
+			ArrayList<Evento> meusEventos = dao.findByExecutor((long) usuarioSession.getId());
+			result.include("meusEventos", meusEventos);
+		}	
 	}
 	
 	@Get("/evento/pendentes")

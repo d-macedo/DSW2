@@ -48,18 +48,19 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${sessao.logado}">
 
-					<!-- GERENTE -->
+						<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
-						<li><a href="">Cadastrar Usuário</a></li>
-						<li><a href="">Aguardando Aprovação</a></li>
+						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
+						<li><a href="<c:url value="/evento/pendentes" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
 						<li><a href="">Balanço Geral</a></li>
-						<li><a href="<c:url value="/logout"/>">Logout</a></li>
+			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
+					
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
-						<li><a href="#">Cadastrar Evento</a></li>
-						<li><a href="">Meus Eventos</a></li>
-						<li><a href="<c:url value="/logout"/>">Logout</a></li>
+						<li><a href="<c:url value="#" />">Cadastrar Evento</a></li> 
+						<li><a href="<c:url value="/evento/meuseventos" />">Meus Eventos</a></li> 
+					<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 					<!-- COMPRADOR -->
 					<c:if test="${sessao.tipoUsuario == 'C'}">
@@ -102,13 +103,25 @@
 				</div>
 			</form>
 		</div>
+			<c:if test="${empty sessao or not sessao.logado}">
+			<div class="row eventoIndex">
+				<div class="col-md-12 titulo">
+					<p>Você não tem permissão para acessar esta página.</p>
+				</div>
+			</div>
+		</c:if>
+		
 		<c:if test="${sessao.logado}">
-
-			<!-- GERENTE -->
-			<c:if test="${sessao.tipoUsuario == 'G'}">
-
+			<c:if test="${sessao.tipoUsuario != 'E'}">
+				<div class="row eventoIndex">
+					<div class="col-md-12 titulo">
+						<p>Você não tem permissão para acessar esta página.</p>
+					</div>
+				</div>
 			</c:if>
-			<!-- EXECUTOR -->
+		</c:if>
+		
+		<c:if test="${sessao.logado}">
 			<c:if test="${sessao.tipoUsuario == 'E'}">
 				<div class="row eventoIndex">
 					<c:forEach var="error" items="${errors}">
@@ -229,16 +242,7 @@
 	</div>
 	</div>
 	</c:if>
-	<!-- COMPRADOR -->
-	<c:if test="${sessao.tipoUsuario == 'C'}">
-
-	</c:if>
-
-	</c:if>
-
-	<c:if test="${empty sessao or not sessao.logado}">
-
-	</c:if>
+</c:if>	
 
 
 	<footer class="rodape">

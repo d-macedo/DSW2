@@ -41,7 +41,7 @@
 					<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
 						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
-						<li><a href="evento/pendentes">Aguardando Aprovação (${numeroPendentes})</a></li> 
+						<li><a href="<c:url value="/evento/pendentes" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
 						<li><a href="">Balanço Geral</a></li>
 			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
@@ -49,7 +49,7 @@
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
 						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar Evento</a></li> 
-						<li><a href="">Meus Eventos</a></li> 
+						<li><a href="<c:url value="/evento/meuseventos" />">Meus Eventos</a></li> 
 					<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 					

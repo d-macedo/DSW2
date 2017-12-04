@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Turtle Tickets - Pendentes Aprovação</title>
+<title>Turtle Tickets - Meus Eventos</title>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resource/css/bootstrap.min.css'/>">
@@ -44,7 +44,7 @@
 						<!-- GERENTE -->
 					<c:if test="${sessao.tipoUsuario == 'G'}">
 						<li><a href="<c:url value="/cadastrar/usuario" />">Cadastrar Usuário</a></li> 
-						<li><a href="<c:url value="#" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
+						<li><a href="<c:url value="/evento/pendentes" />">Aguardando Aprovação (${numeroPendentes})</a></li> 
 						<li><a href="">Balanço Geral</a></li>
 			    			<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
@@ -52,7 +52,7 @@
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
 						<li><a href="<c:url value="/cadastrar/evento" />">Cadastrar Evento</a></li> 
-						<li><a href="<c:url value="/evento/meuseventos" />">Meus Eventos</a></li> 
+						<li><a href="<c:url value="#" />">Meus Eventos</a></li> 
 					<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>
 
@@ -74,12 +74,12 @@
 			</ul>
 		</div>
 	</nav>
-	
+
 	<div class="container">
 
 		<div class="row pesquisarIndex">
 			<form>
-				
+
 				<div class="col-md-3">
 					<input type="text" placeholder="Pesquisar eventos"
 						name="nomeEvento">
@@ -98,7 +98,7 @@
 			</form>
 		</div>
 		
-		<c:if test="${empty sessao or not sessao.logado}">
+			<c:if test="${empty sessao or not sessao.logado}">
 			<div class="row eventoIndex">
 				<div class="col-md-12 titulo">
 					<p>Você não tem permissão para acessar esta página.</p>
@@ -107,7 +107,7 @@
 		</c:if>
 		
 		<c:if test="${sessao.logado}">
-			<c:if test="${sessao.tipoUsuario != 'G'}">
+			<c:if test="${sessao.tipoUsuario != 'E'}">
 				<div class="row eventoIndex">
 					<div class="col-md-12 titulo">
 						<p>Você não tem permissão para acessar esta página.</p>
@@ -117,8 +117,8 @@
 		</c:if>
 		
 		<c:if test="${sessao.logado}">
-			<c:if test="${sessao.tipoUsuario == 'G'}">
-				<c:forEach items="${pendentes}" var="evento">
+			<c:if test="${sessao.tipoUsuario == 'E'}">
+				<c:forEach items="${meusEventos}" var="evento">
 					<a href="../evento/${evento.eve_cod}">
 						<div class="row eventoIndex">
 			

@@ -81,6 +81,17 @@ public class EventoDAOImpl implements EventoDAO {
 		}
 	}
 	
+	@Override
+	public ArrayList<Evento> findByExecutor(long id) {
+		Query query = manager.createQuery("SELECT u FROM Evento u WHERE EVE_EXECUTOR = :id").setParameter("id", id);
+		try {
+			ArrayList<Evento> eventos = (ArrayList<Evento>) query.getResultList();
+			return eventos;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public EventoStatus statusById(int id) {
 		Query query = manager.createQuery("SELECT e FROM EventoStatus e WHERE EST_COD = "+id);
 		EventoStatus status = (EventoStatus) query.getSingleResult();

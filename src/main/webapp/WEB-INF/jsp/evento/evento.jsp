@@ -50,7 +50,7 @@
 					</c:if>
 					<!-- EXECUTOR -->
 					<c:if test="${sessao.tipoUsuario == 'E'}">
-						<li><a href="#">Cadastrar Evento</a></li>
+						<li><a href="../cadastrar/evento">Cadastrar Evento</a></li>
 						<li><a href="">Meus Eventos</a></li>
 						<li><a href="<c:url value="/logout"/>">Logout</a></li>
 					</c:if>

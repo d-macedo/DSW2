@@ -28,7 +28,7 @@
 	    		<input name ="usuario.usu_senha" type="password" placeholder="senha"/>
 	    		<button type="submit" name="buttonLogin">login</button>
   		</form>
-  		<p class="message">Não Registrado? <a href="#">Cadastre-se aqui</a></p>
+  		<p class="message">Não Registrado? <a href="<c:url value="/cadastrar/usuario" />">Cadastre-se aqui</a></p>
 	</div>
 </body>
 </html>

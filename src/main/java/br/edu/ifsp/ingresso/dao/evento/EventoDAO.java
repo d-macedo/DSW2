@@ -11,6 +11,7 @@ public interface EventoDAO {
     public Evento findById(long id);
     public void delete(Evento entity);	 
     public List<Evento> findPendentes();
+    public List<Evento> findByExecutor(long id);
     public List<Evento> findAll(); 
 
 }
